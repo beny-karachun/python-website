@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מבוא למחשב - שפת פייתון | 02340128</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://pay.google.com/gp/p/js/pay.js" async defer></script>
+</head>
+
+<body>
+    <div class="background-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-brands fa-python"></i>
+                <span>פייתון 02340128</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">ראשי</a></li>
+                <li><a href="#homework">שיעורי בית</a></li>
+                <li><a href="#exercises">תרגולים</a></li>
+                <li><a href="#theory">סיכומים</a></li>
+                <li><a href="#exam-prep">הכנה למבחן</a></li>
+                <li><a href="#exams">מבחנים</a></li>
+            </ul>
+            <div class="semester-selector">
+                <select id="semester-select" aria-label="בחר סמסטר">
+                    <option value="winter">סמסטר חורף</option>
+                    <option value="spring">סמסטר אביב</option>
+                    <option value="summer">סמסטר קיץ</option>
+                </select>
+            </div>
+            <div id="auth-container" class="auth-box">
+                <!-- Custom Google Sign In -->
+                <button id="custom-google-signin" class="btn google-btn">
+                    <span class="g-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
+                            <path fill="#EA4335"
+                                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                            <path fill="#4285F4"
+                                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                            <path fill="#FBBC05"
+                                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                            <path fill="#34A853"
+                                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                            <path fill="none" d="M0 0h48v48H0z" />
+                        </svg>
+                    </span>
+                    <span class="btn-text">התחברות</span>
+                </button>
+            </div>
+            <div id="user-profile" class="user-profile hidden">
+                <img id="user-avatar" src="" alt="User Avatar">
+                <span id="user-name"></span>
+                <button id="btn-logout" class="btn-outline btn-small"><i
+                        class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero fade-in">
+            <div class="hero-content">
+                <div class="badge">הטכניון - מכון טכנולוגי לישראל</div>
+                <h1>מבוא למחשב<br><span class="highlight">שפת פייתון 02340128</span></h1>
+                <p class="subtitle">קורס 02340128 - האתר המלווה הרשמי. עברו בקלות את חובות הקורס (hw0 - hw6).</p>
+                <div class="hero-buttons">
+                    <a href="#homework" class="btn btn-primary">לשיעורי הבית <i class="fa-solid fa-arrow-down"></i></a>
+                    <a href="#theory" class="btn btn-secondary">לחומר התיאורטי</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <div class="code-window">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="keyword">def</span> <span class="func">success_in_course</span>():
+    <span class="keyword">while</span> <span class="built-in">True</span>:
+        study_theory()
+        solve_exercises()
+        do_homework()
+        <span class="keyword">if</span> exam_passed():
+            <span class="keyword">break</span>
+    <span class="keyword">return</span> <span class="string">"100"</span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- שיעורי בית -->
+        <section id="homework" class="section alternate">
+            <div class="section-header fade-in">
+                <h2>שיעורי בית (hw0 - hw6)</h2>
+                <p>מטלות התכנות השוטפות במהלך הסמסטר</p>
+            </div>
+            <div class="grid cards-container" id="homework-grid">
+                <!-- Javascript will populate this to save lines in HTML -->
+            </div>
+        </section>
+
+        <!-- תרגולי כיתה -->
+        <section id="exercises" class="section">
+            <div class="section-header fade-in">
+                <h2>תרגולי כיתה</h2>
+                <p>חומרי עזר ומצגות מהתרגולים המועברים בכיתה</p>
+            </div>
+            <div class="timeline fade-in-up" id="exercises-timeline">
+                <!-- Javascript will populate this -->
+            </div>
+        </section>
+
+        <!-- חומר תיאורטי -->
+        <section id="theory" class="section alternate">
+            <div class="section-header fade-in">
+                <h2>חומר תיאורטי</h2>
+                <p>סיכומים, ספרות מומלצת והעמקה</p>
+            </div>
+            <div class="grid layout-3 cards-container">
+                <div class="card glass feature-card fade-in-up">
+                    <i class="fa-solid fa-book feature-icon"></i>
+                    <h3>סיכומי ההרצאות</h3>
+                    <p>מאגר סיכומים מלא של כל הרצאות הקורס, מעודכן לסמסטר הנוכחי.</p>
+                </div>
+                <div class="card glass feature-card fade-in-up" style="transition-delay: 0.1s">
+                    <i class="fa-brands fa-youtube feature-icon"></i>
+                    <h3>סרטוני וידאו</h3>
+                    <p>הקלטות של הרצאות ותרגולים משנים קודמות במערכת פנופטו.</p>
+                </div>
+                <div class="card glass feature-card fade-in-up" style="transition-delay: 0.2s">
+                    <i class="fa-solid fa-sitemap feature-icon"></i>
+                    <h3>דפי נוסחאות וסיכום</h3>
+                    <p>מסמכים לריכוז וסיכום של פקודות חשובות בפייתון.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- הכנה למבחן -->
+        <section id="exam-prep" class="section">
+            <div class="section-header fade-in">
+                <h2>הכנה למבחן</h2>
+                <p>4 תבניות רקורסיה שחוזרות בכל מבחן — שאלות מבוססות בדיוק על האלגוריתמים האלה</p>
+            </div>
+            <div class="exam-prep-container fade-in-up">
+                <div class="exam-prep-tabs" id="exam-prep-tabs">
+                    <!-- JS will populate tabs -->
+                </div>
+                <div class="exam-prep-content" id="exam-prep-content">
+                    <!-- JS will populate content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- מבחנים -->
+        <section id="exams" class="section">
+            <div class="section-header fade-in">
+                <h2>מבחנים</h2>
+                <p>מבנה זהה בין סמסטרי החורף, האביב והקיץ</p>
+            </div>
+            <div class="exams-container glass fade-in-up">
+                <div class="exam-info">
+                    <h3>מבנה המבחן</h3>
+                    <p>המבחן מורכב משאלות כתיבת קוד פתוחות, ושאלות קריאת קוד/פלט.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> גישה לכל חומר כתוב מסוכם מראש</li>
+                        <li><i class="fa-solid fa-check"></i> משך המבחן: 3 שעות</li>
+                    </ul>
+                </div>
+                <div class="exam-list" id="exams-list">
+                    <!-- Javascript will populate this -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-brands fa-python"></i> פייתון 02340128
+            </div>
+            <p>מועבר בטכניון בשלושה סמסטרים (חורף, אביב, קיץ).</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
