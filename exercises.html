@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodingBat Python Exercises</title>
+    <link rel="stylesheet" href="exercises.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <a href="index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <div class="topbar-title">
+                <i class="fa-brands fa-python"></i>
+                <span>CodingBat Python</span>
+            </div>
+        </div>
+        <div class="topbar-center">
+            <span class="problem-title" id="problem-title">Select a problem</span>
+        </div>
+        <div class="topbar-right">
+            <div class="pyodide-status" id="pyodide-status">
+                <div class="status-dot loading"></div>
+                <span>Loading Pyodide...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Categories</h3>
+                <div class="progress-summary" id="progress-summary">0/0 solved</div>
+            </div>
+            <div class="categories-list" id="categories-list">
+                <!-- JS populates -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Problem Description Panel -->
+            <div class="description-panel" id="description-panel">
+                <div class="desc-header">
+                    <h2 id="desc-title">Welcome</h2>
+                    <div class="desc-badges">
+                        <span class="badge-tests" id="badge-tests"></span>
+                    </div>
+                </div>
+                <div class="desc-body" id="desc-body">
+                    <p>Select a problem from the sidebar to begin coding.</p>
+                </div>
+            </div>
+
+            <!-- Editor + Console -->
+            <div class="workspace">
+                <!-- Editor -->
+                <div class="editor-container">
+                    <div class="editor-toolbar">
+                        <div class="toolbar-tabs">
+                            <div class="toolbar-tab active">
+                                <i class="fa-brands fa-python"></i>
+                                <span id="editor-filename">solution.py</span>
+                            </div>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="btn-reset" id="btn-reset" title="Reset code">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                            <button class="btn-run" id="btn-run" title="Run tests (Ctrl+Enter)">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Run Tests</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="monaco-editor"></div>
+                </div>
+
+                <!-- Console Output -->
+                <div class="console-container">
+                    <div class="console-header">
+                        <div class="console-tab active">
+                            <i class="fa-solid fa-terminal"></i>
+                            <span>Test Results</span>
+                        </div>
+                        <button class="btn-clear-console" id="btn-clear-console" title="Clear">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="console-output" id="console-output">
+                        <div class="console-placeholder">
+                            <i class="fa-solid fa-code"></i>
+                            <p>Write your solution and press <kbd>Run Tests</kbd> or <kbd>Ctrl+Enter</kbd></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar toggle for mobile -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <script src="exercises_data.js"></script>
+    <script src="exercises.js"></script>
+</body>
+
+</html>

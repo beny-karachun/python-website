@@ -1,0 +1,24 @@
+/**
+ * CodingBat > Java > String-1 > firstHalf
+ * https://codingbat.com/prob/p172267
+ *
+ * Given a string of even length, return the first half. So the string "WooHoo"
+ * yields "Woo".
+ *
+ * Examples:
+ *   firstHalf("WooHoo") → "Woo"
+ *   firstHalf("HelloThere") → "Hello"
+ *   firstHalf("abcdef") → "abc"
+ *   firstHalf("ab") → "a"
+ *   firstHalf("") → ""
+ *   firstHalf("0123456789") → "01234"
+ *   firstHalf("kitten") → "kit"
+ */
+public class FirstHalf {
+
+    public String firstHalf(String str) {
+        // TODO: implement
+        return "";
+    }
+
+}
