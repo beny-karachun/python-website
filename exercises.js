@@ -393,16 +393,19 @@
             await pyodide.runPythonAsync(userCode);
         } catch (err) {
             consoleOutput.innerHTML = `
-                <div class="test-line test-error">
+                <div class="test-line test-error" style="margin-bottom:14px;">
                     <span class="icon">💥</span>
                     <span class="detail">Oops! There's an error in your code:</span>
                 </div>
-                <pre style="color:var(--red);margin:8px 0;padding:12px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;font-size:12px;overflow-x:auto;">${escapeHTML(err.message)}</pre>
+                <pre style="color:var(--red);margin:0;padding:12px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;font-size:12px;overflow-x:auto;">${escapeHTML(err.message)}</pre>
             `;
             btnRun.classList.remove('running');
             btnRun.innerHTML = '<i class="fa-solid fa-play"></i> <span>Run Tests</span>';
             return;
         }
+
+        const grid = document.createElement('div');
+        grid.className = 'test-results-grid';
 
         // Run each test
         for (let i = 0; i < tests.length; i++) {
@@ -417,20 +420,32 @@
                 if (result === expectedRepr) {
                     passed++;
                     line.className = 'test-line test-pass';
-                    line.innerHTML = `<span class="icon">✅</span><span class="detail"><code>${escapeHTML(test.call)}</code> → ${escapeHTML(test.expected)}</span>`;
+                    line.innerHTML = `<span class="icon">✅</span><span class="detail"><code>${escapeHTML(test.call)}</code> <span style="color:var(--text-muted)">→</span> <strong>${escapeHTML(test.expected)}</strong></span>`;
                 } else {
                     failed++;
                     const actualDisplay = await pyodide.runPythonAsync(`str(${test.call})`);
                     line.className = 'test-line test-fail';
-                    line.innerHTML = `<span class="icon">❌</span><span class="detail"><code>${escapeHTML(test.call)}</code> → expected <strong>${escapeHTML(test.expected)}</strong>, got <strong>${escapeHTML(actualDisplay)}</strong></span>`;
+                    line.innerHTML = `
+                    <span class="icon">❌</span>
+                    <div class="detail">
+                        <code>${escapeHTML(test.call)}</code>
+                        <span style="color:var(--text-muted)">→</span>
+                        <span>Expected</span>
+                        <span class="expected-box">${escapeHTML(test.expected)}</span>
+                        <span>got</span>
+                        <span class="actual-box">${escapeHTML(actualDisplay)}</span>
+                    </div>
+                `;
                 }
             } catch (err) {
                 failed++;
                 line.className = 'test-line test-error';
-                line.innerHTML = `<span class="icon">⚠️</span><span class="detail"><code>${escapeHTML(test.call)}</code> → ${escapeHTML(err.message.split('\\n').pop())}</span>`;
+                line.innerHTML = `<span class="icon">⚠️</span><span class="detail"><code>${escapeHTML(test.call)}</code> <span style="color:var(--text-muted)">→</span> Error: ${escapeHTML(err.message.split('\\n').pop())}</span>`;
             }
-            consoleOutput.appendChild(line);
+            grid.appendChild(line);
         }
+
+        consoleOutput.appendChild(grid);
 
         // Summary
         const summary = document.createElement('div');

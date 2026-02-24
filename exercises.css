@@ -682,8 +682,8 @@ body {
 
 /* ===== Console ===== */
 .console-container {
-    height: 200px;
-    min-height: 100px;
+    height: 280px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     border-top: 1px solid var(--border-color);
@@ -737,6 +737,15 @@ body {
     font-size: 13px;
     line-height: 1.6;
     background: var(--bg-console);
+    display: flex;
+    flex-direction: column;
+}
+
+.test-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
 }
 
 .console-placeholder {
@@ -778,10 +787,28 @@ kbd {
 /* ===== Test Results ===== */
 .test-line {
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 4px 0;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
     animation: slideIn 0.25s ease;
+}
+
+.test-line.test-pass {
+    background: rgba(85, 239, 196, 0.05);
+    border-color: rgba(85, 239, 196, 0.2);
+}
+
+.test-line.test-fail {
+    background: rgba(255, 107, 107, 0.05);
+    border-color: rgba(255, 107, 107, 0.2);
+}
+
+.test-line.test-error {
+    background: rgba(253, 203, 110, 0.05);
+    border-color: rgba(253, 203, 110, 0.2);
 }
 
 @keyframes slideIn {
@@ -798,34 +825,80 @@ kbd {
 
 .test-line .icon {
     flex-shrink: 0;
-    width: 20px;
-    text-align: center;
-    font-size: 13px;
-    margin-top: 2px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .test-pass .icon {
+    background: rgba(85, 239, 196, 0.15);
     color: var(--green-light);
 }
 
 .test-fail .icon {
+    background: rgba(255, 107, 107, 0.15);
     color: var(--red);
 }
 
 .test-error .icon {
+    background: rgba(253, 203, 110, 0.15);
     color: var(--orange);
+}
+
+.test-line .detail {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.test-line code {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: var(--text-bright);
 }
 
 .test-pass .detail {
-    color: var(--text-secondary);
+    color: var(--text-bright);
 }
 
 .test-fail .detail {
-    color: var(--red);
+    color: var(--text-bright);
 }
 
 .test-error .detail {
-    color: var(--orange);
+    color: var(--text-bright);
+}
+
+.expected-box,
+.actual-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: var(--font-code);
+    font-weight: 600;
+}
+
+.expected-box {
+    background: rgba(85, 239, 196, 0.1);
+    color: var(--green-light);
+    border: 1px dashed var(--green-border);
+}
+
+.actual-box {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--red);
+    border: 1px dashed var(--red-border);
 }
 
 .test-summary {
