@@ -38,30 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${isLocked ? premiumBadgeHtml : ''}
                 <div class="card-header">
                     <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>תרגיל רטוב ${hw.id} (hw${hw.id})</h3>
+                    <h3>גליון ${hw.id} (hw${hw.id})</h3>
                     ${!isLocked && isPremium ? premiumBadgeHtml : ''}
                 </div>
                 <p>${hw.title}</p>
                 <div class="hw-weight"><i class="fa-solid fa-weight-hanging"></i> ${hw.weight}% מהציון הסופי</div>
-                <div class="card-actions">
-                    <button class="btn btn-outline btn-dl" data-id="${hw.id}">הורדת המטלה</button>
-                    <button class="btn btn-outline btn-submit" data-id="${hw.id}">הגשה</button>
-                </div>
             `;
             hwContainer.appendChild(card);
-        });
-
-        // Attach event listeners for locked cards
-        document.querySelectorAll('.btn-dl, .btn-submit').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const hwId = parseInt(e.target.getAttribute('data-id'));
-                if (hwId >= 3 && !hasPaidSemesterAccess) {
-                    handlePremiumAccessRequest();
-                } else {
-                    const action = e.target.classList.contains('btn-dl') ? 'קובץ ההוראות יורד כעת...' : 'מועברים למערכת ההגשות (Moodle)';
-                    alert(action);
-                }
-            });
         });
     };
 
