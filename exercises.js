@@ -5,6 +5,7 @@
 
     // ===== Category Emojis & Difficulty =====
     const CATEGORY_META = {
+        'Tutorial': { emoji: '🎓', difficulty: 'easy', xp: 5 },
         'Warmup-1': { emoji: '☀️', difficulty: 'easy', xp: 10 },
         'Warmup-2': { emoji: '🌤️', difficulty: 'easy', xp: 15 },
         'String-1': { emoji: '🔤', difficulty: 'easy', xp: 15 },

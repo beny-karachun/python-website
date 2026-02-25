@@ -2,6 +2,91 @@
 const EXERCISES_DATA = {
   "categories": [
     {
+      "name": "Tutorial",
+      "problems": [
+        {
+          "id": "welcome",
+          "name": "Welcome!",
+          "description": "Welcome to CodingBat Python! This is an interactive environment where you can practice your Python skills.\n\nTo complete this first lesson, simply make the function `welcome()` return the string `\"Ready\"`.",
+          "stub": "def welcome():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "welcome()",
+              "expected": "\"Ready\""
+            }
+          ]
+        },
+        {
+          "id": "run_tests",
+          "name": "Running Tests",
+          "description": "To see if your code is correct, you need to run tests. You can do this by clicking the 'Run Tests' button or by pressing Ctrl+Enter.\n\nMake this function return the integer `42`, then hit Run Tests to see what happens.",
+          "stub": "def run_tests():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "run_tests()",
+              "expected": "42"
+            }
+          ]
+        },
+        {
+          "id": "understanding_results",
+          "name": "Understanding Results",
+          "description": "Oh no! The code below is broken.\n\nIt is supposed to add two numbers `a` and `b` together, but currently it returns `0`. Try running the tests to see what a **failure** looks like in the Results console.\n\nThen, fix the function so that it returns `a + b` instead of `0`.",
+          "stub": "def understanding_results(a, b):\n    return 0\n",
+          "tests": [
+            {
+              "call": "understanding_results(3, 4)",
+              "expected": "7"
+            },
+            {
+              "call": "understanding_results(10, -5)",
+              "expected": "5"
+            },
+            {
+              "call": "understanding_results(0, 0)",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "resetting_code",
+          "name": "Resetting Code",
+          "description": "Sometimes you'll make a mess and want to start over. You can always click the 'Reset' button to revert the editor back to the original starting code.\n\nDelete all the code in the editor, hit the Reset button, and then write a function that returns `True` if a number `n` is even, and `False` otherwise.",
+          "stub": "def is_even(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "is_even(4)",
+              "expected": "True"
+            },
+            {
+              "call": "is_even(7)",
+              "expected": "False"
+            },
+            {
+              "call": "is_even(0)",
+              "expected": "True"
+            },
+            {
+              "call": "is_even(-2)",
+              "expected": "True"
+            }
+          ]
+        },
+        {
+          "id": "leveling_up",
+          "name": "Leveling Up",
+          "description": "Every time you solve a new problem, you earn XP and increase your streak! As you accumulate XP, you'll reach new ranks (like the 'Level 1' badge you see in the sidebar).\n\nIf you're ready to start the real challenges, just return the string `\"I am ready!\"`.",
+          "stub": "def leveling_up():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "leveling_up()",
+              "expected": "\"I am ready!\""
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Warmup-1",
       "problems": [
         {
