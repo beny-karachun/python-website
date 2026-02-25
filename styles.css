@@ -846,6 +846,104 @@ pre {
     border-color: rgba(139, 92, 246, 0.15);
 }
 
+/* Practice Mode (שינון) */
+.practice-btn {
+    margin-right: auto;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Assistant', sans-serif;
+    flex-shrink: 0;
+}
+
+.practice-btn:hover {
+    background: rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: scale(1.05);
+}
+
+.practice-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #60a5fa;
+}
+
+.practice-mode {
+    display: flex;
+    flex-direction: row;
+    background: #1e1e1e;
+    min-height: 0;
+    direction: ltr;
+}
+
+.practice-line-numbers {
+    padding: 1.25rem 0;
+    background: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-width: calc(2em + 1em + 1em + 1px);
+}
+
+.practice-line-numbers span {
+    display: block;
+    width: 2em;
+    padding-right: 1em;
+    margin-right: 1em;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: content-box;
+}
+
+.practice-textarea {
+    flex: 1;
+    min-height: 280px;
+    padding: 1.25rem 1rem;
+    background: #1e1e1e;
+    border: none;
+    color: #d4d4d4;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    resize: none;
+    direction: ltr;
+    text-align: left;
+    box-sizing: border-box;
+    outline: none;
+    overflow-y: auto;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+.practice-textarea:focus {
+    background: #1e1e1e;
+}
+
+.practice-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.15);
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    direction: ltr;
+    text-align: left;
+}
+
 /* Line Numbers (VS Code style) */
 pre code {
     display: flex;

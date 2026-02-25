@@ -100,6 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
             iconClass: 'count',
             returnTag: 'מחזיר: int (סכום)',
             tags: ['רקורסיה', 'subset sum'],
+            plainText: `## amount of ways to do something
+def rec(lst, summ):
+    if not lst:
+        if summ == 0:
+            return 1
+        else:
+            return 0
+
+    option1 = rec(lst[1:], summ)
+    option2 = rec(lst[1:], summ-lst[0])
+
+    return option1+option2
+
+lst = [1,5,3,2,6,8,3]
+summ = 9
+
+print(rec(lst,summ))`,
             code: `<span class="comment">## amount of ways to do something</span>
 <span class="keyword">def</span> <span class="func">rec</span>(lst, summ):
     <span class="keyword">if not</span> lst:
@@ -126,6 +143,27 @@ summ <span class="operator">=</span> <span class="number">9</span>
             iconClass: 'max',
             returnTag: 'מחזיר: int (מקסימום) / -1',
             tags: ['רקורסיה', 'אופטימיזציה'],
+            plainText: `## maximum amount that fit something
+
+def rec(lst, summ):
+    if not lst:
+        if summ == 0:
+            return 0
+        else:
+            return -1
+
+    option1 = rec(lst[1:], summ)
+    option2 = rec(lst[1:], summ-lst[0])
+
+    if option2 >= 0:
+        option2+=1
+
+    return max(option1,option2)
+
+lst = [1,5,3,2,6,8,3]
+summ = 9
+
+print(rec(lst,summ))`,
             code: `<span class="comment">## maximum amount that fit something</span>
 
 <span class="keyword">def</span> <span class="func">rec</span>(lst, summ):
@@ -156,6 +194,24 @@ summ <span class="operator">=</span> <span class="number">9</span>
             iconClass: 'bool',
             returnTag: 'מחזיר: True / False',
             tags: ['רקורסיה', 'בוליאני'],
+            plainText: `## if something is possible
+
+def rec(lst, summ):
+    if not lst:
+        if summ == 0:
+            return True
+        else:
+            return False
+
+    option1 = rec(lst[1:], summ)
+    option2 = rec(lst[1:], summ-lst[0])
+
+    return option1 or option2
+
+lst = [1,5,3,2,6,8,3]
+
+print(rec(lst,8))
+print(rec(lst,135))`,
             code: `<span class="comment">## if something is possible</span>
 
 <span class="keyword">def</span> <span class="func">rec</span>(lst, summ):
@@ -183,6 +239,23 @@ lst <span class="operator">=</span> [<span class="number">1</span>,<span class="
             iconClass: 'closest',
             returnTag: 'מחזיר: int (סכום מקסימלי) / -1',
             tags: ['רקורסיה', 'אקומולטור'],
+            plainText: `## closest sum to something or under some max value
+def sum_under_max(lst,max_val,value=0):
+    if not lst:
+        if value<=max_val:
+            return value
+        else:
+            return -1
+
+    option1 = sum_under_max(lst[1:],max_val,value)
+    option2 = sum_under_max(lst[1:],max_val,value+lst[0])
+
+    return max(option1,option2)
+
+lst = [5,3,9,4]
+val = 11
+
+print(sum_under_max(lst,val))`,
             code: `<span class="comment">## closest sum to something or under some max value</span>
 <span class="keyword">def</span> <span class="func">sum_under_max</span>(lst,max_val,value<span class="operator">=</span><span class="number">0</span>):
     <span class="keyword">if not</span> lst:
@@ -225,7 +298,7 @@ val <span class="operator">=</span> <span class="number">11</span>
             const tagsHtml = algo.tags.map(t => `<span class="algo-tag">${t}</span>`).join('');
 
             panel.innerHTML = `
-                <div class="algorithm-card">
+                <div class="algorithm-card" data-plaintext="${encodeURIComponent(algo.plainText)}">
                     <div class="algorithm-card-header">
                         <div class="algo-icon ${algo.iconClass}">
                             <i class="${algo.icon}"></i>
@@ -234,6 +307,9 @@ val <span class="operator">=</span> <span class="number">11</span>
                             <h3>${algo.title}</h3>
                             <p>${algo.desc}</p>
                         </div>
+                        <button class="practice-btn" title="מצב שינון">
+                            <i class="fa-solid fa-brain"></i> שינון
+                        </button>
                     </div>
                     <div class="algo-code-window">
                         <div class="window-header">
@@ -242,7 +318,10 @@ val <span class="operator">=</span> <span class="number">11</span>
                             <span class="dot green"></span>
                             <span class="file-name">pattern_${i + 1}.py</span>
                         </div>
-                        <pre><code>${algo.code}</code></pre>
+                        <pre class="algo-code-display"><code>${algo.code}</code></pre>
+                        <div class="practice-mode" style="display:none;">
+                            <textarea class="practice-textarea" spellcheck="false" placeholder="...כתוב את הקוד מזיכרון"></textarea>
+                        </div>
                     </div>
                     <div class="algorithm-card-footer">
                         ${tagsHtml}
@@ -281,6 +360,26 @@ val <span class="operator">=</span> <span class="number">11</span>
             iconClass: 'count', // Greenish
             returnTag: 'O(n) זמן | O(k) זכרון',
             tags: ['מיון', 'היסטוגרמה', 'O(n)'],
+            plainText: `## Bucket Sort using Histogram
+def bucket_sort(lst, max_val):
+    # Create a histogram (bucket array) initialized to 0
+    hist = [0] * (max_val + 1)
+    
+    # Count occurrences of each element
+    for num in lst:
+        hist[num] += 1
+        
+    # Reconstruct the sorted list
+    sorted_lst = []
+    for i in range(len(hist)):
+        # Append the element 'i' hist[i] times
+        sorted_lst += [i] * hist[i]
+        
+    return sorted_lst
+
+lst = [4, 2, 2, 8, 3, 3, 1]
+max_v = 8
+print(bucket_sort(lst, max_v))`,
             code: `<span class="comment">## Bucket Sort using Histogram</span>
 <span class="keyword">def</span> <span class="func">bucket_sort</span>(lst, max_val):
     <span class="comment"># Create a histogram (bucket array) initialized to 0</span>
@@ -310,6 +409,21 @@ max_v <span class="operator">=</span> <span class="number">8</span>
             iconClass: 'bool', // Blueish
             returnTag: 'O(n^2) זמן | O(1) זכרון',
             tags: ['מיון', 'בועות', 'O(n^2)'],
+            plainText: `## Bubble Sort
+def bubble_sort(lst):
+    n = len(lst)
+    # Traverse through all array elements
+    for i in range(n):
+        # Last i elements are already in place
+        for j in range(0, n - i - 1):
+            # Swap if the element found is greater than the next element
+            if lst[j] > lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
+                
+    return lst
+
+lst = [64, 34, 25, 12, 22, 11, 90]
+print(bubble_sort(lst))`,
             code: `<span class="comment">## Bubble Sort</span>
 <span class="keyword">def</span> <span class="func">bubble_sort</span>(lst):
     n <span class="operator">=</span> <span class="built-in">len</span>(lst)
@@ -334,6 +448,24 @@ lst <span class="operator">=</span> [<span class="number">64</span>, <span class
             iconClass: 'closest', // Reddish
             returnTag: 'O(n^2) זמן | O(1) זכרון',
             tags: ['מיון', 'בחירה', 'O(n^2)'],
+            plainText: `## Selection Sort
+def selection_sort(lst):
+    n = len(lst)
+    # Traverse through all array elements
+    for i in range(n):
+        # Find the minimum element in remaining unsorted array
+        min_idx = i
+        for j in range(i + 1, n):
+            if lst[min_idx] > lst[j]:
+                min_idx = j
+                
+        # Swap the found minimum element with the first element        
+        lst[i], lst[min_idx] = lst[min_idx], lst[i]
+        
+    return lst
+
+lst = [64, 25, 12, 22, 11]
+print(selection_sort(lst))`,
             code: `<span class="comment">## Selection Sort</span>
 <span class="keyword">def</span> <span class="func">selection_sort</span>(lst):
     n <span class="operator">=</span> <span class="built-in">len</span>(lst)
@@ -361,6 +493,38 @@ lst <span class="operator">=</span> [<span class="number">64</span>, <span class
             iconClass: 'max', // Yellowish
             returnTag: 'O(n*log(n)) זמן | O(n) זכרון',
             tags: ['מיון', 'מיזוג', 'רקורסיה', 'O(n*log(n))'],
+            plainText: `## Merge Sort
+def merge(left, right):
+    result = []
+    i = j = 0
+    # Compare elements and add smaller to result
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+            
+    # Add remaining elements
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def merge_sort(lst):
+    if len(lst) <= 1:
+        return lst
+        
+    # Find middle and sort both halves
+    mid = len(lst) // 2
+    left_half = merge_sort(lst[:mid])
+    right_half = merge_sort(lst[mid:])
+    
+    # Merge the sorted halves
+    return merge(left_half, right_half)
+
+lst = [38, 27, 43, 3, 9, 82, 10]
+print(merge_sort(lst))`,
             code: `<span class="comment">## Merge Sort</span>
 <span class="keyword">def</span> <span class="func">merge</span>(left, right):
     result <span class="operator">=</span> []
@@ -418,7 +582,7 @@ lst <span class="operator">=</span> [<span class="number">38</span>, <span class
             const tagsHtml = algo.tags.map(t => `<span class="algo-tag">${t}</span>`).join('');
 
             panel.innerHTML = `
-                <div class="algorithm-card">
+                <div class="algorithm-card" data-plaintext="${encodeURIComponent(algo.plainText)}">
                     <div class="algorithm-card-header">
                         <div class="algo-icon ${algo.iconClass}">
                             <i class="${algo.icon}"></i>
@@ -427,6 +591,9 @@ lst <span class="operator">=</span> [<span class="number">38</span>, <span class
                             <h3>${algo.title}</h3>
                             <p>${algo.desc}</p>
                         </div>
+                        <button class="practice-btn" title="מצב שינון">
+                            <i class="fa-solid fa-brain"></i> שינון
+                        </button>
                     </div>
                     <div class="algo-code-window">
                         <div class="window-header">
@@ -435,7 +602,10 @@ lst <span class="operator">=</span> [<span class="number">38</span>, <span class
                             <span class="dot green"></span>
                             <span class="file-name">${algo.id}_sort.py</span>
                         </div>
-                        <pre><code>${algo.code}</code></pre>
+                        <pre class="algo-code-display"><code>${algo.code}</code></pre>
+                        <div class="practice-mode" style="display:none;">
+                            <textarea class="practice-textarea" spellcheck="false" placeholder="...כתוב את הקוד מזיכרון"></textarea>
+                        </div>
                     </div>
                     <div class="algorithm-card-footer">
                         ${tagsHtml}
@@ -474,6 +644,26 @@ lst <span class="operator">=</span> [<span class="number">38</span>, <span class
             iconClass: 'bool', // Blueish
             returnTag: 'O(log n) זמן | O(1) זכרון',
             tags: ['חיפוש', 'בינארי', 'לולאה'],
+            plainText: `## Binary Search (Iterative)
+def binary_search(lst, target):
+    low = 0
+    high = len(lst) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if lst[mid] == target:
+            return mid
+        elif lst[mid] > target:
+            high = mid - 1
+        else:
+            low = mid + 1
+
+    return -1
+
+lst = [2, 3, 4, 10, 40]
+target = 10
+print(binary_search(lst, target))`,
             code: `<span class="comment">## Binary Search (Iterative)</span>
 <span class="keyword">def</span> <span class="func">binary_search</span>(lst, target):
     low <span class="operator">=</span> <span class="number">0</span>
@@ -503,6 +693,23 @@ target <span class="operator">=</span> <span class="number">10</span>
             iconClass: 'count', // Greenish
             returnTag: 'O(log n) זמן | O(log n) זכרון',
             tags: ['חיפוש', 'בינארי', 'רקורסיה'],
+            plainText: `## Binary Search (Recursive)
+def binary_search_rec(lst, target, low, high):
+    if low > high:
+        return -1
+
+    mid = (low + high) // 2
+
+    if lst[mid] == target:
+        return mid
+    elif lst[mid] > target:
+        return binary_search_rec(lst, target, low, mid - 1)
+    else:
+        return binary_search_rec(lst, target, mid + 1, high)
+
+lst = [2, 3, 4, 10, 40]
+target = 10
+print(binary_search_rec(lst, target, 0, len(lst)-1))`,
             code: `<span class="comment">## Binary Search (Recursive)</span>
 <span class="keyword">def</span> <span class="func">binary_search_rec</span>(lst, target, low, high):
     <span class="keyword">if</span> low <span class="operator">></span> high:
@@ -545,7 +752,7 @@ target <span class="operator">=</span> <span class="number">10</span>
             const tagsHtml = algo.tags.map(t => `<span class="algo-tag">${t}</span>`).join('');
 
             panel.innerHTML = `
-                <div class="algorithm-card">
+                <div class="algorithm-card" data-plaintext="${encodeURIComponent(algo.plainText)}">
                     <div class="algorithm-card-header">
                         <div class="algo-icon ${algo.iconClass}">
                             <i class="${algo.icon}"></i>
@@ -554,6 +761,9 @@ target <span class="operator">=</span> <span class="number">10</span>
                             <h3>${algo.title}</h3>
                             <p>${algo.desc}</p>
                         </div>
+                        <button class="practice-btn" title="מצב שינון">
+                            <i class="fa-solid fa-brain"></i> שינון
+                        </button>
                     </div>
                     <div class="algo-code-window">
                         <div class="window-header">
@@ -562,7 +772,10 @@ target <span class="operator">=</span> <span class="number">10</span>
                             <span class="dot green"></span>
                             <span class="file-name">${algo.id}.py</span>
                         </div>
-                        <pre><code>${algo.code}</code></pre>
+                        <pre class="algo-code-display"><code>${algo.code}</code></pre>
+                        <div class="practice-mode" style="display:none;">
+                            <textarea class="practice-textarea" spellcheck="false" placeholder="...כתוב את הקוד מזיכרון"></textarea>
+                        </div>
                     </div>
                     <div class="algorithm-card-footer">
                         ${tagsHtml}
@@ -628,6 +841,97 @@ target <span class="operator">=</span> <span class="number">10</span>
     };
 
     addLineNumbers();
+
+    // Practice Mode (שינון) Logic
+    document.addEventListener('click', (e) => {
+        const practiceBtn = e.target.closest('.practice-btn');
+        if (!practiceBtn) return;
+
+        const card = practiceBtn.closest('.algorithm-card');
+        const codeDisplay = card.querySelector('.algo-code-display');
+        const practiceMode = card.querySelector('.practice-mode');
+        const isPracticing = card.classList.toggle('practicing');
+
+        if (isPracticing) {
+            codeDisplay.style.display = 'none';
+            practiceMode.style.display = 'flex';
+            practiceBtn.innerHTML = '<i class="fa-solid fa-eye"></i> הצג קוד';
+            practiceBtn.classList.add('active');
+            // Focus the textarea
+            const textarea = card.querySelector('.practice-textarea');
+            textarea.focus();
+            updateLineNumbers(textarea);
+        } else {
+            codeDisplay.style.display = '';
+            practiceMode.style.display = 'none';
+            practiceBtn.innerHTML = '<i class="fa-solid fa-brain"></i> שינון';
+            practiceBtn.classList.remove('active');
+        }
+    });
+
+    // Line numbers for practice textarea
+    function updateLineNumbers(textarea) {
+        const gutter = textarea.previousElementSibling;
+        if (!gutter || !gutter.classList.contains('practice-line-numbers')) return;
+        const lines = textarea.value.split('\n');
+        const lineCount = Math.max(lines.length, 1);
+        gutter.innerHTML = Array.from({ length: lineCount }, (_, i) =>
+            `<span>${i + 1}</span>`
+        ).join('');
+    }
+
+    // Attach input/scroll sync to all practice textareas
+    document.querySelectorAll('.practice-mode').forEach(pm => {
+        // Insert line number gutter before textarea
+        const textarea = pm.querySelector('.practice-textarea');
+        if (textarea && !pm.querySelector('.practice-line-numbers')) {
+            const gutter = document.createElement('div');
+            gutter.className = 'practice-line-numbers';
+            gutter.innerHTML = '<span>1</span>';
+            pm.insertBefore(gutter, textarea);
+        }
+
+        if (textarea) {
+            // Get algo id for localStorage key
+            const panel = pm.closest('.algorithm-panel');
+            const algoId = panel ? panel.getAttribute('data-algo') : null;
+            const storageKey = algoId ? `practice_${algoId}` : null;
+
+            // Restore saved content
+            if (storageKey) {
+                const saved = localStorage.getItem(storageKey);
+                if (saved) {
+                    textarea.value = saved;
+                    updateLineNumbers(textarea);
+                }
+            }
+
+            const saveToStorage = () => {
+                if (storageKey) localStorage.setItem(storageKey, textarea.value);
+            };
+
+            textarea.addEventListener('input', () => {
+                updateLineNumbers(textarea);
+                saveToStorage();
+            });
+            textarea.addEventListener('keydown', (e) => {
+                // Handle Tab key for indentation
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
+                    textarea.selectionStart = textarea.selectionEnd = start + 4;
+                    updateLineNumbers(textarea);
+                    saveToStorage();
+                }
+            });
+            textarea.addEventListener('scroll', () => {
+                const gutter = pm.querySelector('.practice-line-numbers');
+                if (gutter) gutter.scrollTop = textarea.scrollTop;
+            });
+        }
+    });
 
     observeElements();
     setTimeout(observeElements, 500);
