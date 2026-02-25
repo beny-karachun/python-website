@@ -285,6 +285,326 @@ val <span class="operator">=</span> <span class="number">11</span>
         });
     }
 
+    // Sort Algorithms
+    const sortings = [
+        {
+            id: 'bucket',
+            title: 'Bucket Sort',
+            desc: 'מיון באמצעות היסטוגרמה (מערך מונים). רץ בזמן O(n). יעיל במיוחד כאשר טווח הערכים ידוע וקטן יחסית.',
+            icon: 'fa-solid fa-bucket',
+            iconClass: 'count', // Greenish
+            returnTag: 'O(n) זמן | O(k) זכרון',
+            tags: ['מיון', 'היסטוגרמה', 'O(n)'],
+            code: `<span class="comment">## Bucket Sort using Histogram</span>
+<span class="keyword">def</span> <span class="func">bucket_sort</span>(lst, max_val):
+    <span class="comment"># Create a histogram (bucket array) initialized to 0</span>
+    hist <span class="operator">=</span> [<span class="number">0</span>] <span class="operator">*</span> (max_val <span class="operator">+</span> <span class="number">1</span>)
+    
+    <span class="comment"># Count occurrences of each element</span>
+    <span class="keyword">for</span> num <span class="keyword">in</span> lst:
+        hist[num] <span class="operator">+=</span> <span class="number">1</span>
+        
+    <span class="comment"># Reconstruct the sorted list</span>
+    sorted_lst <span class="operator">=</span> []
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built-in">range</span>(<span class="built-in">len</span>(hist)):
+        <span class="comment"># Append the element 'i' hist[i] times</span>
+        sorted_lst <span class="operator">+=</span> [i] <span class="operator">*</span> hist[i]
+        
+    <span class="keyword">return</span> sorted_lst
+
+lst <span class="operator">=</span> [<span class="number">4</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>]
+max_v <span class="operator">=</span> <span class="number">8</span>
+<span class="built-in">print</span>(<span class="func">bucket_sort</span>(lst, max_v))`
+        },
+        {
+            id: 'bubble',
+            title: 'Bubble Sort',
+            desc: 'מיון בועות. רץ בזמן O(n^2). מבעבע את האיבר הגדול ביותר לסוף המערך בכל איטרציה.',
+            icon: 'fa-solid fa-soap',
+            iconClass: 'bool', // Blueish
+            returnTag: 'O(n^2) זמן | O(1) זכרון',
+            tags: ['מיון', 'בועות', 'O(n^2)'],
+            code: `<span class="comment">## Bubble Sort</span>
+<span class="keyword">def</span> <span class="func">bubble_sort</span>(lst):
+    n <span class="operator">=</span> <span class="built-in">len</span>(lst)
+    <span class="comment"># Traverse through all array elements</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built-in">range</span>(n):
+        <span class="comment"># Last i elements are already in place</span>
+        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built-in">range</span>(<span class="number">0</span>, n <span class="operator">-</span> i <span class="operator">-</span> <span class="number">1</span>):
+            <span class="comment"># Swap if the element found is greater than the next element</span>
+            <span class="keyword">if</span> lst[j] <span class="operator">></span> lst[j <span class="operator">+</span> <span class="number">1</span>]:
+                lst[j], lst[j <span class="operator">+</span> <span class="number">1</span>] <span class="operator">=</span> lst[j <span class="operator">+</span> <span class="number">1</span>], lst[j]
+                
+    <span class="keyword">return</span> lst
+
+lst <span class="operator">=</span> [<span class="number">64</span>, <span class="number">34</span>, <span class="number">25</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">11</span>, <span class="number">90</span>]
+<span class="built-in">print</span>(<span class="func">bubble_sort</span>(lst))`
+        },
+        {
+            id: 'selection',
+            title: 'Selection Sort',
+            desc: 'מיון בחירה. רץ בזמן O(n^2). מוצא את האיבר הקטן ביותר ומציב אותו בתחילת המערך.',
+            icon: 'fa-solid fa-hand-pointer',
+            iconClass: 'closest', // Reddish
+            returnTag: 'O(n^2) זמן | O(1) זכרון',
+            tags: ['מיון', 'בחירה', 'O(n^2)'],
+            code: `<span class="comment">## Selection Sort</span>
+<span class="keyword">def</span> <span class="func">selection_sort</span>(lst):
+    n <span class="operator">=</span> <span class="built-in">len</span>(lst)
+    <span class="comment"># Traverse through all array elements</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built-in">range</span>(n):
+        <span class="comment"># Find the minimum element in remaining unsorted array</span>
+        min_idx <span class="operator">=</span> i
+        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built-in">range</span>(i <span class="operator">+</span> <span class="number">1</span>, n):
+            <span class="keyword">if</span> lst[min_idx] <span class="operator">></span> lst[j]:
+                min_idx <span class="operator">=</span> j
+                
+        <span class="comment"># Swap the found minimum element with the first element        </span>
+        lst[i], lst[min_idx] <span class="operator">=</span> lst[min_idx], lst[i]
+        
+    <span class="keyword">return</span> lst
+
+lst <span class="operator">=</span> [<span class="number">64</span>, <span class="number">25</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">11</span>]
+<span class="built-in">print</span>(<span class="func">selection_sort</span>(lst))`
+        },
+        {
+            id: 'merge',
+            title: 'Merge Sort',
+            desc: 'מיון מיזוג (רקורסיבי). רץ בזמן O(n*log(n)). מחלק את המערך לחצאים, ממיין וממזג אותם חזרה.',
+            icon: 'fa-solid fa-code-merge',
+            iconClass: 'max', // Yellowish
+            returnTag: 'O(n*log(n)) זמן | O(n) זכרון',
+            tags: ['מיון', 'מיזוג', 'רקורסיה', 'O(n*log(n))'],
+            code: `<span class="comment">## Merge Sort</span>
+<span class="keyword">def</span> <span class="func">merge</span>(left, right):
+    result <span class="operator">=</span> []
+    i <span class="operator">=</span> j <span class="operator">=</span> <span class="number">0</span>
+    <span class="comment"># Compare elements and add smaller to result</span>
+    <span class="keyword">while</span> i <span class="operator"><</span> <span class="built-in">len</span>(left) <span class="keyword">and</span> j <span class="operator"><</span> <span class="built-in">len</span>(right):
+        <span class="keyword">if</span> left[i] <span class="operator"><</span> right[j]:
+            result.append(left[i])
+            i <span class="operator">+=</span> <span class="number">1</span>
+        <span class="keyword">else</span>:
+            result.append(right[j])
+            j <span class="operator">+=</span> <span class="number">1</span>
+            
+    <span class="comment"># Add remaining elements</span>
+    result.extend(left[i:])
+    result.extend(right[j:])
+    <span class="keyword">return</span> result
+
+<span class="keyword">def</span> <span class="func">merge_sort</span>(lst):
+    <span class="keyword">if</span> <span class="built-in">len</span>(lst) <span class="operator"><=</span> <span class="number">1</span>:
+        <span class="keyword">return</span> lst
+        
+    <span class="comment"># Find middle and sort both halves</span>
+    mid <span class="operator">=</span> <span class="built-in">len</span>(lst) <span class="operator">//</span> <span class="number">2</span>
+    left_half <span class="operator">=</span> <span class="func">merge_sort</span>(lst[:mid])
+    right_half <span class="operator">=</span> <span class="func">merge_sort</span>(lst[mid:])
+    
+    <span class="comment"># Merge the sorted halves</span>
+    <span class="keyword">return</span> <span class="func">merge</span>(left_half, right_half)
+
+lst <span class="operator">=</span> [<span class="number">38</span>, <span class="number">27</span>, <span class="number">43</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">82</span>, <span class="number">10</span>]
+<span class="built-in">print</span>(<span class="func">merge_sort</span>(lst))`
+        }
+    ];
+
+    const sortPrepTabs = document.getElementById('sort-prep-tabs');
+    const sortPrepContent = document.getElementById('sort-prep-content');
+
+    if (sortPrepTabs && sortPrepContent) {
+        // Build tabs
+        sortings.forEach((algo, i) => {
+            const tab = document.createElement('button');
+            tab.className = `exam-prep-tab ${i === 0 ? 'active' : ''}`;
+            tab.setAttribute('data-algo', algo.id);
+            tab.innerHTML = `<span class="tab-number">${i + 1}</span> ${algo.title}`;
+            sortPrepTabs.appendChild(tab);
+        });
+
+        // Build content panels
+        sortings.forEach((algo, i) => {
+            const panel = document.createElement('div');
+            panel.className = `algorithm-panel ${i === 0 ? 'active' : ''}`;
+            panel.setAttribute('data-algo', algo.id);
+
+            const tagsHtml = algo.tags.map(t => `<span class="algo-tag">${t}</span>`).join('');
+
+            panel.innerHTML = `
+                <div class="algorithm-card">
+                    <div class="algorithm-card-header">
+                        <div class="algo-icon ${algo.iconClass}">
+                            <i class="${algo.icon}"></i>
+                        </div>
+                        <div>
+                            <h3>${algo.title}</h3>
+                            <p>${algo.desc}</p>
+                        </div>
+                    </div>
+                    <div class="algo-code-window">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="file-name">${algo.id}_sort.py</span>
+                        </div>
+                        <pre><code>${algo.code}</code></pre>
+                    </div>
+                    <div class="algorithm-card-footer">
+                        ${tagsHtml}
+                        <span class="algo-tag return-type">${algo.returnTag}</span>
+                    </div>
+                </div>
+            `;
+            sortPrepContent.appendChild(panel);
+        });
+
+        // Tab switching
+        sortPrepTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.exam-prep-tab');
+            if (!tab) return;
+            const algoId = tab.getAttribute('data-algo');
+
+            sortPrepTabs.querySelectorAll('.exam-prep-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            sortPrepContent.querySelectorAll('.algorithm-panel').forEach(p => {
+                p.classList.remove('active');
+                if (p.getAttribute('data-algo') === algoId) {
+                    p.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Search Algorithms
+    const searches = [
+        {
+            id: 'binary_search',
+            title: 'Binary Search (Iterative)',
+            desc: 'חיפוש בינארי בלולאה (איטרטיבי). רץ בזמן O(log n) על מערך ממוין.',
+            icon: 'fa-solid fa-magnifying-glass',
+            iconClass: 'bool', // Blueish
+            returnTag: 'O(log n) זמן | O(1) זכרון',
+            tags: ['חיפוש', 'בינארי', 'לולאה'],
+            code: `<span class="comment">## Binary Search (Iterative)</span>
+<span class="keyword">def</span> <span class="func">binary_search</span>(lst, target):
+    low <span class="operator">=</span> <span class="number">0</span>
+    high <span class="operator">=</span> <span class="built-in">len</span>(lst) <span class="operator">-</span> <span class="number">1</span>
+
+    <span class="keyword">while</span> low <span class="operator"><=</span> high:
+        mid <span class="operator">=</span> (low <span class="operator">+</span> high) <span class="operator">//</span> <span class="number">2</span>
+
+        <span class="keyword">if</span> lst[mid] <span class="operator">==</span> target:
+            <span class="keyword">return</span> mid
+        <span class="keyword">elif</span> lst[mid] <span class="operator">></span> target:
+            high <span class="operator">=</span> mid <span class="operator">-</span> <span class="number">1</span>
+        <span class="keyword">else</span>:
+            low <span class="operator">=</span> mid <span class="operator">+</span> <span class="number">1</span>
+
+    <span class="keyword">return</span> <span class="number">-1</span>
+
+lst <span class="operator">=</span> [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">40</span>]
+target <span class="operator">=</span> <span class="number">10</span>
+<span class="built-in">print</span>(<span class="func">binary_search</span>(lst, target))`
+        },
+        {
+            id: 'binary_search_rec',
+            title: 'Binary Search (Recursive)',
+            desc: 'חיפוש בינארי רקורסיבי. גם רץ בזמן O(log n) על מערך ממוין, מעביר אינדקסים או חותך מערכים.',
+            icon: 'fa-solid fa-code-branch',
+            iconClass: 'count', // Greenish
+            returnTag: 'O(log n) זמן | O(log n) זכרון',
+            tags: ['חיפוש', 'בינארי', 'רקורסיה'],
+            code: `<span class="comment">## Binary Search (Recursive)</span>
+<span class="keyword">def</span> <span class="func">binary_search_rec</span>(lst, target, low, high):
+    <span class="keyword">if</span> low <span class="operator">></span> high:
+        <span class="keyword">return</span> <span class="number">-1</span>
+
+    mid <span class="operator">=</span> (low <span class="operator">+</span> high) <span class="operator">//</span> <span class="number">2</span>
+
+    <span class="keyword">if</span> lst[mid] <span class="operator">==</span> target:
+        <span class="keyword">return</span> mid
+    <span class="keyword">elif</span> lst[mid] <span class="operator">></span> target:
+        <span class="keyword">return</span> <span class="func">binary_search_rec</span>(lst, target, low, mid <span class="operator">-</span> <span class="number">1</span>)
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="func">binary_search_rec</span>(lst, target, mid <span class="operator">+</span> <span class="number">1</span>, high)
+
+lst <span class="operator">=</span> [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">40</span>]
+target <span class="operator">=</span> <span class="number">10</span>
+<span class="built-in">print</span>(<span class="func">binary_search_rec</span>(lst, target, <span class="number">0</span>, <span class="built-in">len</span>(lst)<span class="operator">-</span><span class="number">1</span>))`
+        }
+    ];
+
+    const searchPrepTabs = document.getElementById('search-prep-tabs');
+    const searchPrepContent = document.getElementById('search-prep-content');
+
+    if (searchPrepTabs && searchPrepContent) {
+        // Build tabs
+        searches.forEach((algo, i) => {
+            const tab = document.createElement('button');
+            tab.className = `exam-prep-tab ${i === 0 ? 'active' : ''}`;
+            tab.setAttribute('data-algo', algo.id);
+            tab.innerHTML = `<span class="tab-number">${i + 1}</span> ${algo.title}`;
+            searchPrepTabs.appendChild(tab);
+        });
+
+        // Build content panels
+        searches.forEach((algo, i) => {
+            const panel = document.createElement('div');
+            panel.className = `algorithm-panel ${i === 0 ? 'active' : ''}`;
+            panel.setAttribute('data-algo', algo.id);
+
+            const tagsHtml = algo.tags.map(t => `<span class="algo-tag">${t}</span>`).join('');
+
+            panel.innerHTML = `
+                <div class="algorithm-card">
+                    <div class="algorithm-card-header">
+                        <div class="algo-icon ${algo.iconClass}">
+                            <i class="${algo.icon}"></i>
+                        </div>
+                        <div>
+                            <h3>${algo.title}</h3>
+                            <p>${algo.desc}</p>
+                        </div>
+                    </div>
+                    <div class="algo-code-window">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="file-name">${algo.id}.py</span>
+                        </div>
+                        <pre><code>${algo.code}</code></pre>
+                    </div>
+                    <div class="algorithm-card-footer">
+                        ${tagsHtml}
+                        <span class="algo-tag return-type">${algo.returnTag}</span>
+                    </div>
+                </div>
+            `;
+            searchPrepContent.appendChild(panel);
+        });
+
+        // Tab switching
+        searchPrepTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.exam-prep-tab');
+            if (!tab) return;
+            const algoId = tab.getAttribute('data-algo');
+
+            searchPrepTabs.querySelectorAll('.exam-prep-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            searchPrepContent.querySelectorAll('.algorithm-panel').forEach(p => {
+                p.classList.remove('active');
+                if (p.getAttribute('data-algo') === algoId) {
+                    p.classList.add('active');
+                }
+            });
+        });
+    }
+
     // 2. Intersection Observer for scroll animations
     const observerOptions = {
         root: null,
