@@ -36,8 +36,8 @@
     let xp = parseInt(localStorage.getItem('codingbat_xp') || '0');
     let streak = parseInt(localStorage.getItem('codingbat_streak') || '0');
 
-    // ===== DOM =====
-    const categoriesList = document.getElementById('categories-list');
+    const categoriesBar = document.getElementById('categories-bar');
+    const problemsListContainer = document.getElementById('problems-list-container');
     const descTitle = document.getElementById('desc-title');
     const descBody = document.getElementById('desc-body');
     const badgeTests = document.getElementById('badge-tests');
@@ -229,79 +229,66 @@
         }
     }
 
-    // ===== Render Sidebar =====
-    function renderSidebar() {
-        categoriesList.innerHTML = '';
+    // ===== Render Categories Bar =====
+    function renderCategories() {
+        categoriesBar.innerHTML = '';
         let totalProblems = 0;
         let totalSolved = 0;
 
         EXERCISES_DATA.categories.forEach((cat) => {
             const meta = CATEGORY_META[cat.name] || { emoji: '📁', difficulty: 'medium', xp: 15 };
-            const catEl = document.createElement('div');
-            catEl.className = 'category-item';
-
             const solvedInCat = cat.problems.filter(p => solved[p.id]).length;
             totalProblems += cat.problems.length;
             totalSolved += solvedInCat;
-            const progress = cat.problems.length > 0 ? (solvedInCat / cat.problems.length) * 100 : 0;
 
-            const header = document.createElement('div');
-            header.className = 'category-header' + (cat.name === currentCategory ? ' active' : '');
-            header.innerHTML = `
-                <div class="category-header-left">
-                    <span class="category-chevron"><i class="fa-solid fa-chevron-right"></i></span>
-                    <span class="category-emoji">${meta.emoji}</span>
-                    <span>${cat.name}</span>
-                </div>
-                <div class="category-right">
-                    <div class="category-progress-bar">
-                        <div class="category-progress-fill" style="width:${progress}%"></div>
-                    </div>
-                    <span class="category-count">${solvedInCat}/${cat.problems.length}</span>
-                </div>
+            const tabEl = document.createElement('div');
+            tabEl.className = 'category-tab' + (cat.name === currentCategory ? ' active' : '');
+
+            tabEl.innerHTML = `
+                <span class="cat-emoji">${meta.emoji}</span>
+                <span class="cat-name">${cat.name}</span>
+                <span class="cat-progress">${solvedInCat}/${cat.problems.length}</span>
             `;
 
-            const list = document.createElement('div');
-            list.className = 'problems-list' + (cat.name === currentCategory ? ' expanded' : '');
-
-            cat.problems.forEach(problem => {
-                const isSolved = solved[problem.id];
-                const item = document.createElement('div');
-                item.className = 'problem-item' + (isSolved ? ' solved' : '') + (currentProblem && currentProblem.id === problem.id ? ' active' : '');
-                item.dataset.id = problem.id;
-                item.innerHTML = `
-                    <span class="solve-icon">${isSolved ? '✅' : '○'}</span>
-                    <span>${problem.name}</span>
-                `;
-                item.addEventListener('click', () => {
+            tabEl.addEventListener('click', () => {
+                if (currentCategory !== cat.name) {
                     currentCategory = cat.name;
-                    loadProblem(problem, cat.name);
-                });
-                list.appendChild(item);
-            });
-
-            header.addEventListener('click', () => {
-                const wasActive = header.classList.contains('active');
-                // Close all
-                document.querySelectorAll('.category-header.active').forEach(h => h.classList.remove('active'));
-                document.querySelectorAll('.problems-list.expanded').forEach(l => l.classList.remove('expanded'));
-                if (!wasActive) {
-                    header.classList.add('active');
-                    list.classList.add('expanded');
-                    currentCategory = cat.name;
-                } else {
-                    currentCategory = null;
+                    // Update active state in tabs
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    tabEl.classList.add('active');
+                    // Render problems for new category
+                    renderProblems(cat.name);
                 }
             });
 
-            catEl.appendChild(header);
-            catEl.appendChild(list);
-            categoriesList.appendChild(catEl);
+            categoriesBar.appendChild(tabEl);
         });
 
         const overallProgress = totalProblems > 0 ? (totalSolved / totalProblems) * 100 : 0;
         progressSummary.textContent = `${totalSolved}/${totalProblems}`;
         overallProgressFill.style.width = overallProgress + '%';
+    }
+
+    // ===== Render Problems Sidebar =====
+    function renderProblems(categoryName) {
+        problemsListContainer.innerHTML = '';
+        const cat = EXERCISES_DATA.categories.find(c => c.name === categoryName);
+        if (!cat) return;
+
+        cat.problems.forEach(problem => {
+            const isSolved = solved[problem.id];
+            const item = document.createElement('div');
+            item.className = 'problem-item' + (isSolved ? ' solved' : '') + (currentProblem && currentProblem.id === problem.id ? ' active' : '');
+            item.dataset.id = problem.id;
+            item.innerHTML = `
+                <span class="solve-icon">${isSolved ? '✅' : '○'}</span>
+                <span>${problem.name}</span>
+            `;
+            item.addEventListener('click', () => {
+                loadProblem(problem, cat.name);
+            });
+            problemsListContainer.appendChild(item);
+        });
     }
 
     // ===== Load Problem =====
@@ -471,7 +458,8 @@
                 localStorage.setItem('codingbat_xp', xp.toString());
                 localStorage.setItem('codingbat_streak', streak.toString());
                 updateGameUI();
-                renderSidebar();
+                renderCategories();
+                renderProblems(currentCategory);
                 // Re-highlight
                 document.querySelectorAll('.problem-item').forEach(el => {
                     el.classList.toggle('active', el.dataset.id === currentProblem.id);
@@ -525,15 +513,11 @@
 
     // ===== Init =====
     async function init() {
-        updateGameUI();
-        renderSidebar();
-
         // Open first category
-        const firstHeader = categoriesList.querySelector('.category-header');
-        if (firstHeader) {
-            firstHeader.classList.add('active');
-            firstHeader.nextElementSibling.classList.add('expanded');
-            currentCategory = EXERCISES_DATA.categories[0]?.name;
+        if (EXERCISES_DATA.categories.length > 0) {
+            currentCategory = EXERCISES_DATA.categories[0].name;
+            renderCategories();
+            renderProblems(currentCategory);
         }
 
         await Promise.all([initMonaco(), initPyodide()]);

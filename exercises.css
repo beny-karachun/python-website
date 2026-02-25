@@ -226,9 +226,74 @@ body {
 }
 
 /* ===== App Layout ===== */
+.categories-bar {
+    height: 56px;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.categories-bar::-webkit-scrollbar {
+    height: 4px;
+}
+
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.category-tab:hover {
+    background: var(--bg-hover);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.category-tab.active {
+    background: var(--card-gradient);
+    border-color: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.category-tab .cat-emoji {
+    font-size: 16px;
+}
+
+.category-tab .cat-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.category-tab.active .cat-name {
+    color: var(--text-bright);
+}
+
+.category-tab .cat-progress {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
 .app-layout {
     display: flex;
-    height: calc(100vh - 52px);
+    height: calc(100vh - 108px);
+    /* 52px topbar + 56px categories-bar */
 }
 
 /* ===== Sidebar ===== */
@@ -301,104 +366,21 @@ body {
     white-space: nowrap;
 }
 
-.categories-list {
+.problems-list-container {
     overflow-y: auto;
     flex: 1;
-    padding: 8px;
-}
-
-/* ===== Category ===== */
-.category-item {
-    margin-bottom: 4px;
-}
-
-.category-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-    border-radius: var(--radius-sm);
-}
-
-.category-header:hover {
-    background: var(--bg-hover);
-}
-
-.category-header.active {
-    background: var(--bg-hover);
-    color: var(--text-bright);
-}
-
-.category-header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.category-emoji {
-    font-size: 18px;
-    width: 28px;
-    text-align: center;
-}
-
-.category-chevron {
-    font-size: 9px;
-    color: var(--text-muted);
-    transition: transform 0.2s;
-    width: 14px;
-}
-
-.category-header.active .category-chevron {
-    transform: rotate(90deg);
-}
-
-.category-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.category-progress-bar {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.category-progress-fill {
-    height: 100%;
-    background: var(--green);
-    border-radius: 2px;
-    transition: width 0.4s ease;
-}
-
-.category-count {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 500;
-    min-width: 24px;
-    text-align: right;
+    padding: 12px;
 }
 
 /* ===== Problem List ===== */
-.problems-list {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.problems-list.expanded {
-    max-height: 2000px;
+.problems-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .problem-item {
-    padding: 7px 12px 7px 52px;
+    padding: 10px 14px;
     font-size: 13px;
     cursor: pointer;
     color: var(--text-secondary);
@@ -426,7 +408,7 @@ body {
 }
 
 .problem-item .solve-icon {
-    font-size: 12px;
+    font-size: 14px;
     flex-shrink: 0;
 }
 
