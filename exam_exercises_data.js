@@ -10,7 +10,7 @@ const EXERCISES_DATA = {
                     "description": "Write a function `count_ways(lst, summ)` that receives a list of numbers `lst` and a target sum `summ`. The function should return the number of different ways to choose a subset from the list whose sum exactly equals `summ`.\n\n**Instructions:**\n- You must use recursion.\n- You may assume all numbers are positive.",
                     "stub": "def count_ways(lst, summ):\n    # TODO: implement recursive solution\n    pass\n",
                     "tests": [
-                        { "call": "count_ways([1, 5, 3, 2, 6, 8, 3], 9)", "expected": "4" },
+                        { "call": "count_ways([1, 5, 3, 2, 6, 8, 3], 9)", "expected": "7" },
                         { "call": "count_ways([1, 2, 3], 3)", "expected": "2" },
                         { "call": "count_ways([1, 2], 5)", "expected": "0" }
                     ]
@@ -21,7 +21,7 @@ const EXERCISES_DATA = {
                     "description": "You are organizing a Hackathon and have a specific budget `target_budget` (in thousands). You are presented with a list of project proposals, `proposals`, each with an associated cost. Write a recursive function `budget_variations(proposals, target_budget)` that calculates exactly how many different combinations of projects you can fund using exactly the target budget.",
                     "stub": "def budget_variations(proposals, target_budget):\n    # TODO: recursion\n    pass\n",
                     "tests": [
-                        { "call": "budget_variations([10, 20, 15, 5, 25, 30], 40)", "expected": "3" },
+                        { "call": "budget_variations([10, 20, 15, 5, 25, 30], 40)", "expected": "4" },
                         { "call": "budget_variations([5, 5, 5, 5], 10)", "expected": "6" },
                         { "call": "budget_variations([100, 200], 50)", "expected": "0" }
                     ]
@@ -43,7 +43,7 @@ const EXERCISES_DATA = {
                     "description": "Write a function `max_items(lst, summ)` that receives a list of numbers and a target sum. The function should return the **maximum number** of elements that can be taken from the list such that their sum equals exactly the target.\n\nIf there is no subset that matches the sum, return `-1`.",
                     "stub": "def max_items(lst, summ):\n    # TODO: implement recursive solution\n    pass\n",
                     "tests": [
-                        { "call": "max_items([1, 5, 3, 2, 6, 8, 3], 9)", "expected": "3" },
+                        { "call": "max_items([1, 5, 3, 2, 6, 8, 3], 9)", "expected": "4" },
                         { "call": "max_items([4, 5], 10)", "expected": "-1" },
                         { "call": "max_items([1, 1, 1, 1], 2)", "expected": "2" }
                     ]
@@ -131,7 +131,7 @@ const EXERCISES_DATA = {
                     "description": "An elevator has a maximum structural limit of `elevator_max`. A group of people are waiting to enter, their weights listed in `people`. To avoid setting off the alarm while moving as much weight as possible, what is the maximum combined weight that can board the elevator safely? Write a recursive function `safe_elevator_load(people, elevator_max)`.",
                     "stub": "def safe_elevator_load(people, elevator_max, current=0):\n    # TODO: recursion\n    pass\n",
                     "tests": [
-                        { "call": "safe_elevator_load([70, 80, 65, 90, 110], 300)", "expected": "295" },
+                        { "call": "safe_elevator_load([70, 80, 65, 90, 110], 300)", "expected": "280" },
                         { "call": "safe_elevator_load([200, 200], 150)", "expected": "0" },
                         { "call": "safe_elevator_load([50, 50, 60], 160)", "expected": "160" }
                     ]
