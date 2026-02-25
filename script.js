@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Auth & Premium State
+    // Auth State
     let user = null;
-    let hasPaidSemesterAccess = false;
 
     // 1. Generate Content Dynamically to save HTML space
     const hwTitles = [
@@ -20,28 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
         hwContainer.innerHTML = ''; // Clear existing
 
         hwTitles.forEach((hw, i) => {
-            const isPremium = hw.id >= 3;
-            const isLocked = isPremium && !hasPaidSemesterAccess;
-
             const card = document.createElement('div');
-            card.className = `card glass fade-in-up ${isLocked ? 'premium-locked' : ''}`;
+            card.className = `card glass fade-in-up`;
             card.style.transitionDelay = `${i * 0.1}s`;
 
-            let premiumBadgeHtml = '';
-            if (isPremium) {
-                premiumBadgeHtml = isLocked
-                    ? `<div class="premium-badge"><i class="fa-solid fa-lock"></i> החל משבוע זה נדרשת גישת פרימיום</div>`
-                    : '<div class="locked-icon" title="נרכש פרימיום"><i class="fa-solid fa-unlock"></i></div>';
-            }
-
             card.innerHTML = `
-                ${isLocked ? premiumBadgeHtml : ''}
                 <div class="card-header">
                     <div class="card-icon"><i class="fa-solid fa-code"></i></div>
                     <h3>גליון ${hw.id} (hw${hw.id})</h3>
-                    ${!isLocked && isPremium ? premiumBadgeHtml : ''}
                 </div>
-                <p>${hw.title}</p>
                 <div class="hw-weight"><i class="fa-solid fa-weight-hanging"></i> ${hw.weight}% מהציון הסופי</div>
             `;
             hwContainer.appendChild(card);
@@ -769,116 +755,11 @@ target <span class="operator">=</span> <span class="number">10</span>
         document.getElementById('user-avatar').src = user.picture;
     }
 
-    const handlePremiumAccessRequest = () => {
-        if (!user) {
-            alert('כדי לרכוש גישת סמסטר (99 ש"ח), יש להתחבר קודם לחשבון גוגל.');
-            if (customGoogleBtn) customGoogleBtn.click();
-            return;
-        }
-
-        // Trigger Google Pay
-        onGooglePayLoaded();
-    };
-
     document.getElementById('btn-logout')?.addEventListener('click', () => {
         user = null;
-        hasPaidSemesterAccess = false;
         document.getElementById('auth-container').classList.remove('hidden');
         document.getElementById('user-profile').classList.add('hidden');
-        renderHomeworks(); // re-render to lock cards
     });
 
-    // --- Google Pay Mock Flow ---
-    const baseRequest = {
-        apiVersion: 2,
-        apiVersionMinor: 0
-    };
 
-    const tokenizationSpecification = {
-        type: 'PAYMENT_GATEWAY',
-        parameters: {
-            'gateway': 'example',
-            'gatewayMerchantId': 'exampleGatewayMerchantId'
-        }
-    };
-
-    const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
-    const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-
-    const baseCardPaymentMethod = {
-        type: 'CARD',
-        parameters: {
-            allowedAuthMethods: allowedCardAuthMethods,
-            allowedCardNetworks: allowedCardNetworks
-        }
-    };
-
-    const cardPaymentMethod = Object.assign(
-        {},
-        baseCardPaymentMethod,
-        { tokenizationSpecification: tokenizationSpecification }
-    );
-
-    let paymentsClient = null;
-
-    function getGoogleIsReadyToPayRequest() {
-        return Object.assign(
-            {},
-            baseRequest,
-            { allowedPaymentMethods: [baseCardPaymentMethod] }
-        );
-    }
-
-    function getGooglePaymentDataRequest() {
-        const paymentDataRequest = Object.assign({}, baseRequest);
-        paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
-        paymentDataRequest.transactionInfo = {
-            totalPriceStatus: 'FINAL',
-            totalPrice: '99.00',
-            currencyCode: 'ILS',
-            countryCode: 'IL'
-        };
-        paymentDataRequest.merchantInfo = {
-            merchantName: 'Python Course 02340128',
-            merchantId: '12345678901234567890'
-        };
-        return paymentDataRequest;
-    }
-
-    function onGooglePayLoaded() {
-        paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-        const isReadyToPayRequest = getGoogleIsReadyToPayRequest();
-
-        paymentsClient.isReadyToPay(isReadyToPayRequest)
-            .then(function (response) {
-                if (response.result) {
-                    processPayment();
-                } else {
-                    alert('Google Pay אינו נתמך בדפדפן זה.');
-                }
-            })
-            .catch(function (err) {
-                console.error(err);
-            });
-    }
-
-    function processPayment() {
-        const paymentDataRequest = getGooglePaymentDataRequest();
-        paymentsClient.loadPaymentData(paymentDataRequest)
-            .then(function (paymentData) {
-                // Success!
-                console.log('Payment Approved', paymentData);
-                hasPaidSemesterAccess = true;
-                alert('התשלום בוצע בהצלחה! גישת סמסטר פרימיום הופעלה.');
-                renderHomeworks(); // Re-render to unlock cards
-            })
-            .catch(function (err) {
-                if (err.statusCode === 'CANCELED') {
-                    console.log('Payment canceled');
-                } else {
-                    console.error('Payment error', err);
-                    alert('אירעה שגיאה בתשלום. ניתן לנסות שנית.');
-                }
-            });
-    }
 });
