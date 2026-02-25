@@ -141,6 +141,27 @@ body {
     gap: 16px;
 }
 
+.lang-toggle {
+    background: rgba(108, 92, 231, 0.1);
+    color: var(--accent-light);
+    border: 1px solid rgba(108, 92, 231, 0.3);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.lang-toggle:hover {
+    background: rgba(108, 92, 231, 0.2);
+    transform: translateY(-1px);
+}
+
 .xp-display {
     display: flex;
     align-items: center;
@@ -433,6 +454,24 @@ body {
     max-height: 180px;
     overflow-y: auto;
     flex-shrink: 0;
+}
+
+/* RTL Support - Mixing LTR Code inside RTL Context */
+.rtl-text {
+    direction: rtl;
+    text-align: right;
+    font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rtl-text code {
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: bidi-override;
+}
+
+.rtl-text .desc-examples {
+    direction: ltr;
+    text-align: left;
 }
 
 .desc-header {

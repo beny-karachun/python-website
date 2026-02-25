@@ -37,6 +37,7 @@
     let solved = JSON.parse(localStorage.getItem('codingbat_solved') || '{}');
     let xp = parseInt(localStorage.getItem('codingbat_xp') || '0');
     let streak = parseInt(localStorage.getItem('codingbat_streak') || '0');
+    let currentLang = localStorage.getItem('codingbat_lang') || 'en';
 
     const categoriesBar = document.getElementById('categories-bar');
     const problemsListContainer = document.getElementById('problems-list-container');
@@ -58,6 +59,8 @@
     const levelBadge = document.getElementById('level-badge');
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebar = document.getElementById('sidebar');
+    const langToggle = document.getElementById('lang-toggle');
+    const langLabel = document.getElementById('lang-label');
 
     // ===== Confetti Engine =====
     const confettiCanvas = document.getElementById('confetti-canvas');
@@ -279,12 +282,19 @@
 
         cat.problems.forEach(problem => {
             const isSolved = solved[problem.id];
+
+            // Translate sidebar title if available
+            let displayTitle = problem.name;
+            if (currentLang === 'he' && typeof HEBREW_PACK !== 'undefined' && HEBREW_PACK[problem.id]) {
+                displayTitle = HEBREW_PACK[problem.id].name;
+            }
+
             const item = document.createElement('div');
             item.className = 'problem-item' + (isSolved ? ' solved' : '') + (currentProblem && currentProblem.id === problem.id ? ' active' : '');
             item.dataset.id = problem.id;
             item.innerHTML = `
                 <span class="solve-icon">${isSolved ? '✅' : '○'}</span>
-                <span>${problem.name}</span>
+                <span class="problem-item-text" ${currentLang === 'he' ? 'dir="rtl" style="text-align: right; width: 100%;"' : ''}>${displayTitle}</span>
             `;
             item.addEventListener('click', () => {
                 loadProblem(problem, cat.name);
@@ -298,9 +308,14 @@
         currentProblem = problem;
         const meta = CATEGORY_META[categoryName] || { emoji: '📝', difficulty: 'medium', xp: 15 };
 
+        // Handle Translation if 'he' is selected and pack is available
+        const isHebrew = currentLang === 'he' && typeof HEBREW_PACK !== 'undefined' && HEBREW_PACK[problem.id];
+        const displayTitle = isHebrew ? HEBREW_PACK[problem.id].name : problem.name;
+        const displayDesc = isHebrew ? HEBREW_PACK[problem.id].description : problem.description;
+
         // Update header
         problemEmoji.textContent = meta.emoji;
-        descTitle.textContent = problem.name;
+        descTitle.textContent = displayTitle;
         editorFilename.textContent = problem.id + '.py';
 
         // Difficulty badge
@@ -313,7 +328,7 @@
         badgeTests.textContent = `${testCount} tests`;
 
         // Description
-        let escapedDesc = escapeHTML(problem.description);
+        let escapedDesc = escapeHTML(displayDesc);
         // Basic Markdown parsing for bold and inline code
         escapedDesc = escapedDesc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         escapedDesc = escapedDesc.replace(/`(.*?)`/g, '<code style="background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px;">$1</code>');
@@ -331,6 +346,13 @@
             descHTML += '</div>';
         }
         descBody.innerHTML = descHTML;
+
+        // RTL Toggle class for descriptions
+        if (isHebrew) {
+            descBody.classList.add('rtl-text');
+        } else {
+            descBody.classList.remove('rtl-text');
+        }
 
         // Load code
         const savedCode = loadCode(problem.id);
@@ -516,6 +538,26 @@
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('open');
     });
+
+    if (langToggle && langLabel) {
+        // Initial setup
+        langLabel.textContent = currentLang.toUpperCase();
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'he' : 'en';
+            localStorage.setItem('codingbat_lang', currentLang);
+            langLabel.textContent = currentLang.toUpperCase();
+
+            // Re-render strings dynamically
+            if (currentProblem && currentCategory) {
+                loadProblem(currentProblem, currentCategory);
+            }
+            // (Optional) Re-render problems list to translate sidebar titles if needed
+            if (currentCategory) {
+                renderProblems(currentCategory);
+            }
+        });
+    }
 
     // ===== Init =====
     async function init() {
