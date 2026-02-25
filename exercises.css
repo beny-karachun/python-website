@@ -298,8 +298,8 @@ body {
 
 /* ===== Sidebar ===== */
 .sidebar {
-    width: 300px;
-    min-width: 300px;
+    width: 240px;
+    min-width: 240px;
     background: var(--bg-sidebar);
     border-right: 1px solid var(--border-color);
     display: flex;
