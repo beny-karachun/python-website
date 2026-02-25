@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 CodingZone Exam Prep Exercises</title>
+    <link rel="stylesheet" href="exercises.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <a href="index.html" class="back-link" title="Back to course">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <div class="topbar-title">
+                <span class="topbar-logo">🐍</span>
+                <span>CodingZone Exam Prep</span>
+            </div>
+        </div>
+        <div class="topbar-center">
+            <div class="xp-display" id="xp-display">
+                <span class="xp-icon">⚡</span>
+                <span class="xp-value" id="xp-value">0 XP</span>
+            </div>
+            <div class="streak-display" id="streak-display">
+                <span class="streak-icon">🔥</span>
+                <span class="streak-value" id="streak-value">0</span>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <div class="pyodide-status" id="pyodide-status">
+                <div class="status-dot loading"></div>
+                <span>Loading Python...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categories Bar -->
+    <nav class="categories-bar" id="categories-bar">
+        <!-- JS populates -->
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="level-badge" id="level-badge">
+                    <span class="level-icon">🌟</span>
+                    <span class="level-text">Level 1</span>
+                </div>
+                <div class="overall-progress">
+                    <div class="progress-bar-mini">
+                        <div class="progress-fill-mini" id="overall-progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-summary">0/190</span>
+                </div>
+            </div>
+            <div class="problems-list-container" id="problems-list-container">
+                <!-- JS populates -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Problem Description Panel -->
+            <div class="description-panel" id="description-panel">
+                <div class="desc-header">
+                    <div class="desc-title-row">
+                        <span class="problem-emoji" id="problem-emoji">📝</span>
+                        <h2 id="desc-title">Pick a challenge!</h2>
+                    </div>
+                    <div class="desc-badges">
+                        <span class="badge-difficulty" id="badge-difficulty"></span>
+                        <span class="badge-tests" id="badge-tests"></span>
+                    </div>
+                </div>
+                <div class="desc-body" id="desc-body">
+                    <p class="welcome-msg">👈 Choose a category from the sidebar and start solving! Every problem you
+                        solve earns you <strong>XP</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Editor + Console -->
+            <div class="workspace">
+                <!-- Editor -->
+                <div class="editor-container">
+                    <div class="editor-toolbar">
+                        <div class="toolbar-tabs">
+                            <div class="toolbar-tab active">
+                                <span class="tab-icon">🐍</span>
+                                <span id="editor-filename">solution.py</span>
+                            </div>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="btn-reset" id="btn-reset" title="Reset code">
+                                <i class="fa-solid fa-rotate-left"></i> Reset
+                            </button>
+                            <button class="btn-run" id="btn-run" title="Run tests (Ctrl+Enter)">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Run Tests</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="monaco-editor"></div>
+                </div>
+
+                <!-- Console Output -->
+                <div class="console-container">
+                    <div class="console-header">
+                        <div class="console-tab active">
+                            <span>📋</span>
+                            <span>Results</span>
+                        </div>
+                        <button class="btn-clear-console" id="btn-clear-console" title="Clear">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="console-output" id="console-output">
+                        <div class="console-placeholder">
+                            <div class="placeholder-icon">🚀</div>
+                            <p>Write your solution and hit <kbd>Run Tests</kbd></p>
+                            <p class="placeholder-hint">or press <kbd>Ctrl+Enter</kbd></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar toggle for mobile -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <script src="exam_exercises_data.js"></script>
+    <script src="exercises.js"></script>
+</body>
+
+</html>

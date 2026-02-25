@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Zone | 02340128</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-brands fa-python"></i>
+                <span>פייתון 02340128</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">חזרה לראשי</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main style="display: flex; align-items: center; justify-content: center; min-height: 80vh;">
+        <div class="container fade-in-up" style="text-align: center; max-width: 900px;">
+            <h1 style="font-size: 3em; margin-bottom: 20px; color: var(--text-color);">
+                <i class="fa-solid fa-rocket" style="color: var(--acc-color);"></i> ברוכים הבאים ל-Coding Zone
+            </h1>
+            <p style="font-size: 1.3em; margin-bottom: 50px; color: var(--text-muted); line-height: 1.6;">
+                כאן תוכלו לתרגל את כל הידע שצברתם בקורס. בחרו את מסלול התרגול שמתאים לכם כרגע:
+            </p>
+
+            <div class="grid layout-2" style="gap: 30px;">
+                <!-- Beginner / General Exercises Path -->
+                <a href="exercises.html" class="card glass feature-card"
+                    style="text-decoration: none; padding: 40px 25px; transition: transform 0.3s, box-shadow 0.3s;">
+                    <i class="fa-solid fa-code feature-icon" style="font-size: 3em; margin-bottom: 20px;"></i>
+                    <h3 style="font-size: 1.6em; margin-bottom: 15px; color: var(--text-color);">תרגול למתחילים</h3>
+                    <p style="font-size: 1.1em; color: var(--text-muted); line-height: 1.5;">
+                        הרבה שאלות למתחילים, מעולה ללימוד השפה משלבים ראשונים ועד מתקדמים.
+                    </p>
+                </a>
+
+                <!-- Exam / Advanced Exercises Path -->
+                <a href="exam_exercises.html" class="card glass feature-card"
+                    style="text-decoration: none; padding: 40px 25px; transition: transform 0.3s, box-shadow 0.3s;">
+                    <i class="fa-solid fa-graduation-cap feature-icon"
+                        style="font-size: 3em; margin-bottom: 20px; color: var(--warning-color, #fbbf24);"></i>
+                    <h3 style="font-size: 1.6em; margin-bottom: 15px; color: var(--text-color);">הכנה למבחן</h3>
+                    <p style="font-size: 1.1em; color: var(--text-muted); line-height: 1.5;">
+                        שאלות בנוסח המבחן, התמקדות באלגוריתמים, מיונים, חיפושים ורקורסיה מתקדמת.
+                    </p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in, .fade-in-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
