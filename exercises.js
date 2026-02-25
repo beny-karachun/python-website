@@ -561,6 +561,8 @@
 
     // ===== Init =====
     async function init() {
+        updateGameUI(); // Sync the UI with localStorage immediately
+
         // Open first category
         if (EXERCISES_DATA.categories.length > 0) {
             currentCategory = EXERCISES_DATA.categories[0].name;
