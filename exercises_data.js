@@ -87,6 +87,655 @@ const EXERCISES_DATA = {
       ]
     },
     {
+      "name": "Python Tutorial",
+      "problems": [
+        {
+          "id": "hello_world",
+          "name": "Hello World",
+          "description": "Return the string 'Hello World!'\n\n**Hint:** Use `return 'Hello World!'`",
+          "stub": "def hello_world():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "hello_world()",
+              "expected": "'Hello World!'"
+            }
+          ]
+        },
+        {
+          "id": "add_two",
+          "name": "Add Two",
+          "description": "Given two numbers a and b, return their sum.\n\n**Hint:** Use the `+` operator, like `return a + b`",
+          "stub": "def add_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "add_two(3, 4)",
+              "expected": "7"
+            },
+            {
+              "call": "add_two(-1, 5)",
+              "expected": "4"
+            },
+            {
+              "call": "add_two(0, 0)",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "sub_two",
+          "name": "Subtract Two",
+          "description": "Given two numbers a and b, return the result of subtracting b from a.\n\n**Hint:** Use the `-` operator. Order matters: `return a - b`",
+          "stub": "def sub_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "sub_two(10, 4)",
+              "expected": "6"
+            },
+            {
+              "call": "sub_two(5, 5)",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "mult_two",
+          "name": "Multiply Two",
+          "description": "Given two numbers a and b, return their product.\n\n**Hint:** Use the `*` operator for multiplication.",
+          "stub": "def mult_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "mult_two(3, 4)",
+              "expected": "12"
+            },
+            {
+              "call": "mult_two(0, 5)",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "div_two",
+          "name": "Divide Two",
+          "description": "Return the true division of a by b. You may assume b is not 0.\n\n**Hint:** Use the `/` operator.",
+          "stub": "def div_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "div_two(10, 2)",
+              "expected": "5.0"
+            },
+            {
+              "call": "div_two(5, 2)",
+              "expected": "2.5"
+            }
+          ]
+        },
+        {
+          "id": "floor_div",
+          "name": "Floor Division",
+          "description": "Return the integer (floor) division of a by b using the // operator. You may assume b is not 0.\n\n**Hint:** Floor division discards the decimal. Use `return a // b`",
+          "stub": "def floor_div(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "floor_div(10, 3)",
+              "expected": "3"
+            },
+            {
+              "call": "floor_div(5, 2)",
+              "expected": "2"
+            }
+          ]
+        },
+        {
+          "id": "mod_two",
+          "name": "Modulo",
+          "description": "Return the remainder of a divided by b using the % operator. You may assume b is not 0.\n\n**Hint:** Modulo gives the remainder. Use `return a % b`",
+          "stub": "def mod_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "mod_two(10, 3)",
+              "expected": "1"
+            },
+            {
+              "call": "mod_two(14, 5)",
+              "expected": "4"
+            }
+          ]
+        },
+        {
+          "id": "power_two",
+          "name": "Exponentiation",
+          "description": "Return a raised to the power of b using the ** operator.\n\n**Hint:** Use `return a ** b`",
+          "stub": "def power_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "power_two(2, 3)",
+              "expected": "8"
+            },
+            {
+              "call": "power_two(5, 2)",
+              "expected": "25"
+            }
+          ]
+        },
+        {
+          "id": "string_concat",
+          "name": "String Concatenation",
+          "description": "Given two strings s1 and s2, return them concatenated together.\n\n**Hint:** You can add strings together using the `+` operator.",
+          "stub": "def string_concat(s1, s2):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_concat('Hello, ', 'world!')",
+              "expected": "'Hello, world!'"
+            },
+            {
+              "call": "string_concat('foo', 'bar')",
+              "expected": "'foobar'"
+            }
+          ]
+        },
+        {
+          "id": "string_len",
+          "name": "String Length",
+          "description": "Return the length of the string s using the len() function.\n\n**Hint:** Use `return len(s)`",
+          "stub": "def string_len(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_len('hello')",
+              "expected": "5"
+            },
+            {
+              "call": "string_len('')",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "string_upper",
+          "name": "Uppercase String",
+          "description": "Return the string s converted entirely to uppercase.\n\n**Hint:** String methods are appended to the string. Use `return s.upper()`",
+          "stub": "def string_upper(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_upper('hello')",
+              "expected": "'HELLO'"
+            },
+            {
+              "call": "string_upper('Python')",
+              "expected": "'PYTHON'"
+            }
+          ]
+        },
+        {
+          "id": "string_lower",
+          "name": "Lowercase String",
+          "description": "Return the string s converted entirely to lowercase.\n\n**Hint:** Use `return s.lower()`",
+          "stub": "def string_lower(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_lower('HELLO')",
+              "expected": "'hello'"
+            },
+            {
+              "call": "string_lower('PyThOn')",
+              "expected": "'python'"
+            }
+          ]
+        },
+        {
+          "id": "string_first_char",
+          "name": "First Character",
+          "description": "Return the first character of the string s. Assume s is not empty.\n\n**Hint:** Python is 0-indexed. Use `return s[0]`",
+          "stub": "def string_first_char(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_first_char('hello')",
+              "expected": "'h'"
+            },
+            {
+              "call": "string_first_char('Python')",
+              "expected": "'P'"
+            }
+          ]
+        },
+        {
+          "id": "string_last_char",
+          "name": "Last Character",
+          "description": "Return the last character of the string s. Assume s is not empty.\n\n**Hint:** You can use negative indices starting from the end. Use `return s[-1]`",
+          "stub": "def string_last_char(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_last_char('hello')",
+              "expected": "'o'"
+            },
+            {
+              "call": "string_last_char('Python')",
+              "expected": "'n'"
+            }
+          ]
+        },
+        {
+          "id": "string_slicing",
+          "name": "String Slicing",
+          "description": "Return the first 3 characters of the string s. If s is shorter than 3 characters, return s.\n\n**Hint:** Slicing works like `s[start:end]`. Use `return s[:3]`",
+          "stub": "def string_slicing(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_slicing('hello')",
+              "expected": "'hel'"
+            },
+            {
+              "call": "string_slicing('hi')",
+              "expected": "'hi'"
+            }
+          ]
+        },
+        {
+          "id": "list_create",
+          "name": "Create List",
+          "description": "Return a list containing the integers 1, 2, and 3 in that order.\n\n**Hint:** Lists are enclosed in square brackets. `return [1, 2, 3]`",
+          "stub": "def list_create():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_create()",
+              "expected": "[1, 2, 3]"
+            }
+          ]
+        },
+        {
+          "id": "list_append",
+          "name": "Append to List",
+          "description": "Given a list lst and an item, return the list with the item appended to the end.\n\n**Hint:** First use `lst.append(item)`, then `return lst`",
+          "stub": "def list_append(lst, item):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_append([1, 2], 3)",
+              "expected": "[1, 2, 3]"
+            },
+            {
+              "call": "list_append(['a'], 'b')",
+              "expected": "['a', 'b']"
+            }
+          ]
+        },
+        {
+          "id": "list_insert",
+          "name": "Insert into List",
+          "description": "Given a list lst, an index i, and an item, insert the item at the given index and return the modified list.\n\n**Hint:** First use `lst.insert(i, item)`, then `return lst`",
+          "stub": "def list_insert(lst, i, item):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_insert([1, 3], 1, 2)",
+              "expected": "[1, 2, 3]"
+            },
+            {
+              "call": "list_insert(['a', 'c'], 1, 'b')",
+              "expected": "['a', 'b', 'c']"
+            }
+          ]
+        },
+        {
+          "id": "list_len",
+          "name": "List Length",
+          "description": "Return the number of items in the list lst.\n\n**Hint:** The `len()` function works on lists too! `return len(lst)`",
+          "stub": "def list_len(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_len([1, 2, 3])",
+              "expected": "3"
+            },
+            {
+              "call": "list_len([])",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "list_indexing",
+          "name": "List Indexing",
+          "description": "Return the second element (index 1) of the list lst. Assume lst has at least 2 elements.\n\n**Hint:** 0-indexing means the second item is at index 1. `return lst[1]`",
+          "stub": "def list_indexing(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_indexing([10, 20, 30])",
+              "expected": "20"
+            },
+            {
+              "call": "list_indexing(['a', 'b', 'c'])",
+              "expected": "'b'"
+            }
+          ]
+        },
+        {
+          "id": "list_slicing",
+          "name": "List Slicing",
+          "description": "Return a sublist containing the first two elements of lst. Assume lst has at least 2 elements.\n\n**Hint:** Like string slicing, use `lst[:2]`",
+          "stub": "def list_slicing(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "list_slicing([10, 20, 30, 40])",
+              "expected": "[10, 20]"
+            },
+            {
+              "call": "list_slicing(['a', 'b', 'c'])",
+              "expected": "['a', 'b']"
+            }
+          ]
+        },
+        {
+          "id": "dict_create",
+          "name": "Create Dictionary",
+          "description": "Return a dictionary mapping the string 'a' to 1 and 'b' to 2.\n\n**Hint:** Dicts use curly braces. `return {'a': 1, 'b': 2}`",
+          "stub": "def dict_create():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "dict_create()",
+              "expected": "{'a': 1, 'b': 2}"
+            }
+          ]
+        },
+        {
+          "id": "dict_get",
+          "name": "Dictionary Get",
+          "description": "Given a dictionary d and a key k, return the value associated with k. Assume k exists in d.\n\n**Hint:** Access keys using brackets just like lists. `return d[k]`",
+          "stub": "def dict_get(d, k):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "dict_get({'a': 1, 'b': 2}, 'a')",
+              "expected": "1"
+            },
+            {
+              "call": "dict_get({'name': 'Alice'}, 'name')",
+              "expected": "'Alice'"
+            }
+          ]
+        },
+        {
+          "id": "tuple_create",
+          "name": "Create Tuple",
+          "description": "Return a tuple containing the strings 'apple' and 'banana'.\n\n**Hint:** Tuples use parentheses. `return ('apple', 'banana')`",
+          "stub": "def tuple_create():\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "tuple_create()",
+              "expected": "('apple', 'banana')"
+            }
+          ]
+        },
+        {
+          "id": "set_create",
+          "name": "Create Set",
+          "description": "Given a list of items, return a set containing those items (removing any duplicates).\n\n**Hint:** Convert a list to a set using `return set(items)`",
+          "stub": "def set_create(items):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "set_create([1, 2, 2, 3])",
+              "expected": "{1, 2, 3}"
+            },
+            {
+              "call": "set_create([])",
+              "expected": "set()"
+            }
+          ]
+        },
+        {
+          "id": "bool_and",
+          "name": "Logical AND",
+          "description": "Given two booleans a and b, return True if both are True, otherwise False.\n\n**Hint:** Use the `and` keyword. `return a and b`",
+          "stub": "def bool_and(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "bool_and(True, True)",
+              "expected": "True"
+            },
+            {
+              "call": "bool_and(True, False)",
+              "expected": "False"
+            },
+            {
+              "call": "bool_and(False, False)",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "bool_or",
+          "name": "Logical OR",
+          "description": "Given two booleans a and b, return True if at least one is True, otherwise False.\n\n**Hint:** Use the `or` keyword. `return a or b`",
+          "stub": "def bool_or(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "bool_or(True, False)",
+              "expected": "True"
+            },
+            {
+              "call": "bool_or(False, False)",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "bool_not",
+          "name": "Logical NOT",
+          "description": "Given a boolean a, return its opposite (True becomes False, False becomes True).\n\n**Hint:** Use the `not` keyword. `return not a`",
+          "stub": "def bool_not(a):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "bool_not(True)",
+              "expected": "False"
+            },
+            {
+              "call": "bool_not(False)",
+              "expected": "True"
+            }
+          ]
+        },
+        {
+          "id": "is_positive",
+          "name": "Is Positive (If-Else)",
+          "description": "Return True if n is strictly greater than 0, otherwise return False.\n\n**Hint:** You can write an if statement: `if n > 0: return True else: return False` or simply `return n > 0`.",
+          "stub": "def is_positive(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "is_positive(5)",
+              "expected": "True"
+            },
+            {
+              "call": "is_positive(0)",
+              "expected": "False"
+            },
+            {
+              "call": "is_positive(-3)",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "is_even",
+          "name": "Is Even",
+          "description": "Return True if n is even, False otherwise.\n\n**Hint:** Check if the remainder when dividing by 2 is zero! `return n % 2 == 0`",
+          "stub": "def is_even(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "is_even(4)",
+              "expected": "True"
+            },
+            {
+              "call": "is_even(7)",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "max_of_two",
+          "name": "Max of Two",
+          "description": "Return the larger of a and b.\n\n**Hint:** You can use an if statement `if a > b:...` or the built-in `max(a, b)` function.",
+          "stub": "def max_of_two(a, b):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "max_of_two(5, 10)",
+              "expected": "10"
+            },
+            {
+              "call": "max_of_two(7, 3)",
+              "expected": "7"
+            }
+          ]
+        },
+        {
+          "id": "check_sign",
+          "name": "Check Sign (Elif)",
+          "description": "Return 'positive' if n > 0, 'negative' if n < 0, and 'zero' if n == 0.\n\n**Hint:** Chain conditions with elif. `if n > 0: ... elif n < 0: ... else: ...`",
+          "stub": "def check_sign(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "check_sign(5)",
+              "expected": "'positive'"
+            },
+            {
+              "call": "check_sign(-2)",
+              "expected": "'negative'"
+            },
+            {
+              "call": "check_sign(0)",
+              "expected": "'zero'"
+            }
+          ]
+        },
+        {
+          "id": "sum_list",
+          "name": "Sum a List (For Loop)",
+          "description": "Given a list of numbers, return their total sum.\n\n**Hint:** You can iterate over elements like `for item in lst:` and add them to a total, or just `return sum(lst)`",
+          "stub": "def sum_list(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "sum_list([1, 2, 3])",
+              "expected": "6"
+            },
+            {
+              "call": "sum_list([])",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "count_evens",
+          "name": "Count Evens (Loop + If)",
+          "description": "Given a list of integers, return how many of them are even.\n\n**Hint:** Set a counter to 0. Loop through `for item in lst:` and if `item % 2 == 0:`, increment the counter. Return the counter.",
+          "stub": "def count_evens(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "count_evens([1, 2, 3, 4, 5, 6])",
+              "expected": "3"
+            },
+            {
+              "call": "count_evens([1, 3, 5])",
+              "expected": "0"
+            }
+          ]
+        },
+        {
+          "id": "filter_strings",
+          "name": "Filter Strings",
+          "description": "Given a list of strings, return a new list containing only the strings that have a length greater than 3.\n\n**Hint:** Create an empty list `res = []`. Loop `for s in lst:`. If `len(s) > 3:`, use `res.append(s)`. Return `res`.",
+          "stub": "def filter_strings(lst):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "filter_strings(['cat', 'dog', 'elephant', 'bird'])",
+              "expected": "['elephant', 'bird']"
+            },
+            {
+              "call": "filter_strings(['hi', 'yo'])",
+              "expected": "[]"
+            }
+          ]
+        },
+        {
+          "id": "sum_while",
+          "name": "Sum using While Loop",
+          "description": "Given an integer n, use a while loop to return the sum of all integers from 1 up to n (inclusive). Assume n >= 1.\n\n**Hint:** Initialize `total = 0` and `i = 1`. `while i <= n:`, add `i` to `total` and do `i += 1`. Return `total`.",
+          "stub": "def sum_while(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "sum_while(3)",
+              "expected": "6"
+            },
+            {
+              "call": "sum_while(5)",
+              "expected": "15"
+            }
+          ]
+        },
+        {
+          "id": "type_check_int",
+          "name": "Type Check Integer",
+          "description": "Return True if the variable x is an integer, False otherwise.\n\n**Hint:** Use `return type(x) is int` or `return isinstance(x, int)`",
+          "stub": "def type_check_int(x):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "type_check_int(5)",
+              "expected": "True"
+            },
+            {
+              "call": "type_check_int(5.0)",
+              "expected": "False"
+            },
+            {
+              "call": "type_check_int('5')",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "type_check_str",
+          "name": "Type Check String",
+          "description": "Return True if the variable x is a string, False otherwise.\n\n**Hint:** Use `return isinstance(x, str)`",
+          "stub": "def type_check_str(x):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "type_check_str('hello')",
+              "expected": "True"
+            },
+            {
+              "call": "type_check_str(123)",
+              "expected": "False"
+            }
+          ]
+        },
+        {
+          "id": "string_to_int",
+          "name": "String to Integer",
+          "description": "Given a string that contains an integer (like '42'), return it converted to an int.\n\n**Hint:** Cast it using `return int(s)`",
+          "stub": "def string_to_int(s):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "string_to_int('42')",
+              "expected": "42"
+            },
+            {
+              "call": "string_to_int('-10')",
+              "expected": "-10"
+            }
+          ]
+        },
+        {
+          "id": "int_to_string",
+          "name": "Integer to String",
+          "description": "Given an integer n, return it converted to a string.\n\n**Hint:** Cast it using `return str(n)`",
+          "stub": "def int_to_string(n):\n    # TODO: implement\n    pass\n",
+          "tests": [
+            {
+              "call": "int_to_string(42)",
+              "expected": "'42'"
+            },
+            {
+              "call": "int_to_string(-10)",
+              "expected": "'-10'"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Warmup-1",
       "problems": [
         {
