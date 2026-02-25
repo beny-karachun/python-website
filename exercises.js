@@ -313,7 +313,11 @@
         badgeTests.textContent = `${testCount} tests`;
 
         // Description
-        let descHTML = `<p>${escapeHTML(problem.description).replace(/\n/g, '<br>')}</p>`;
+        let escapedDesc = escapeHTML(problem.description);
+        // Basic Markdown parsing for bold and inline code
+        escapedDesc = escapedDesc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        escapedDesc = escapedDesc.replace(/`(.*?)`/g, '<code style="background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px;">$1</code>');
+        let descHTML = `<p>${escapedDesc.replace(/\n/g, '<br>')}</p>`;
         if (problem.tests && problem.tests.length > 0) {
             descHTML += '<div class="desc-examples">';
             const showCount = Math.min(problem.tests.length, 3);
