@@ -1,12 +1,15 @@
 import json
 import time
 import re
+import os
 from deep_translator import GoogleTranslator
 import sys
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def main():
     print("Reading exercises_data.js...")
-    with open('exercises_data.js', 'r', encoding='utf-8') as f:
+    with open(os.path.join(SCRIPT_DIR, '..', 'exercises_data.js'), 'r', encoding='utf-8') as f:
         content = f.read()
 
     # Extract JSON part
@@ -70,7 +73,7 @@ def main():
     print("Reading existing hebrew_pack.js...")
     existing = {}
     try:
-        with open('hebrew_pack.js', 'r', encoding='utf-8') as f:
+        with open(os.path.join(SCRIPT_DIR, '..', 'hebrew_pack.js'), 'r', encoding='utf-8') as f:
             exist_content = f.read()
             # Extremely naive extraction for safety
             # But since we just want to merge, let's just write the newly translated dict,
@@ -83,7 +86,7 @@ def main():
     # and the user already has the exam prep ones in exam_exercises_data.js. Wait, no, hebrew_pack.js contains exam prep!
     
     # We will just write a new file `hebrew_pack_new.json` and merge it in JS or here.
-    with open('hebrew_pack_new.json', 'w', encoding='utf-8') as f:
+    with open(os.path.join(SCRIPT_DIR, 'hebrew_pack_new.json'), 'w', encoding='utf-8') as f:
         json.dump(hebrew_pack, f, ensure_ascii=False, indent=4)
         
     print("Done! Saved to hebrew_pack_new.json")

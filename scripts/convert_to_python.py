@@ -7,8 +7,9 @@ import os
 import re
 import glob
 
-JAVA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CodingBat-Java")
-PY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CodingBat-Python")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+JAVA_DIR = os.path.join(SCRIPT_DIR, "data", "CodingBat-Java")
+PY_DIR = os.path.join(SCRIPT_DIR, "data", "CodingBat-Python")
 
 
 def camel_to_snake(name):

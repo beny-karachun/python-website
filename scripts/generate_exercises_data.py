@@ -5,9 +5,10 @@ converting Java syntax to Python.
 """
 import os, re, json, glob
 
-JAVA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CodingBat-Java")
-PY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CodingBat-Python")
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exercises_data.js")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+JAVA_DIR = os.path.join(SCRIPT_DIR, "data", "CodingBat-Java")
+PY_DIR = os.path.join(SCRIPT_DIR, "data", "CodingBat-Python")
+OUT = os.path.join(SCRIPT_DIR, "..", "exercises_data.js")
 
 CATEGORIES = [
     "Warmup-1", "Warmup-2",

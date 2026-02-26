@@ -14,7 +14,8 @@ import urllib.parse
 from datetime import datetime
 
 BASE_URL = "https://codingbat.com"
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CodingBat-Java")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(SCRIPT_DIR, "data", "CodingBat-Java")
 
 CATEGORIES = [
     "Warmup-1", "Warmup-2",

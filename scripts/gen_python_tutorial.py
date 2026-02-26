@@ -181,7 +181,7 @@ category_obj = {
 }
 
 def update_exercises_data():
-    exercises_data_path = "c:\\Users\\beny1\\Desktop\\Projects\\Vibe apps\\python website\\exercises_data.js"
+    exercises_data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "exercises_data.js")
     with open(exercises_data_path, 'r', encoding='utf-8') as f:
         content = f.read()
     

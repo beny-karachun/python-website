@@ -1,8 +1,13 @@
 const fs = require('fs');
+const path = require('path');
 
 function main() {
+    const scriptDir = __dirname;
+    const hebrewPackPath = path.join(scriptDir, '..', 'hebrew_pack.js');
+    const hebrewPackNewPath = path.join(scriptDir, 'hebrew_pack_new.json');
+
     console.log("Reading existing hebrew_pack.js...");
-    const oldContent = fs.readFileSync('hebrew_pack.js', 'utf8');
+    const oldContent = fs.readFileSync(hebrewPackPath, 'utf8');
 
     // Extract the object part
     const jsonStr = oldContent.replace(/^[\s\S]*?const HEBREW_PACK = /, '').replace(/;?\s*$/, '');
@@ -11,7 +16,7 @@ function main() {
     const oldPack = (new Function('return ' + jsonStr))();
 
     console.log("Reading new translations from hebrew_pack_new.json...");
-    const newPack = JSON.parse(fs.readFileSync('hebrew_pack_new.json', 'utf8'));
+    const newPack = JSON.parse(fs.readFileSync(hebrewPackNewPath, 'utf8'));
 
     // Merge: newPack goes first, then oldPack overwrites it to keep manual translations intact
     const mergedPack = { ...newPack, ...oldPack };
@@ -19,11 +24,9 @@ function main() {
     const count = Object.keys(mergedPack).length;
     console.log(`Merged! Total problems in Hebrew pack: ${count}`);
 
-    const newFileContent = `// Hebrew Language Pack for CodingZone Exercises
-const HEBREW_PACK = ${JSON.stringify(mergedPack, null, 4)};
-`;
+    const newFileContent = `// Hebrew Language Pack for CodingZone Exercises\nconst HEBREW_PACK = ${JSON.stringify(mergedPack, null, 4)};\n`;
 
-    fs.writeFileSync('hebrew_pack.js', newFileContent, 'utf8');
+    fs.writeFileSync(hebrewPackPath, newFileContent, 'utf8');
     console.log("Saved complete translations to hebrew_pack.js!");
 }
 
