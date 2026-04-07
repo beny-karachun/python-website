@@ -1032,6 +1032,211 @@ kbd {
     .streak-display {
         display: none;
     }
+
+    /* Categories bar scrollable */
+    .categories-bar {
+        padding: 0 12px;
+        gap: 6px;
+    }
+
+    .category-tab {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .category-tab .cat-progress {
+        display: none;
+    }
+
+    /* App layout stacked */
+    .app-layout {
+        height: calc(100vh - 108px);
+    }
+
+    /* Topbar compact */
+    .topbar {
+        padding: 0 12px;
+    }
+
+    .topbar-left {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .topbar-title {
+        gap: 6px;
+        font-size: 13px;
+        min-width: 0;
+    }
+
+    .topbar-title > div {
+        min-width: 0;
+    }
+
+    .topbar-title > div > div {
+        display: none;
+    }
+
+    .topbar-logo {
+        font-size: 16px;
+    }
+
+    .topbar-right {
+        min-width: 0;
+    }
+
+    .pyodide-status span {
+        display: none;
+    }
+
+    .pyodide-status {
+        padding: 5px 8px;
+    }
+
+    /* Editor toolbar */
+    .editor-toolbar {
+        padding: 0 8px;
+    }
+
+    .toolbar-tab {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .btn-reset {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .btn-run {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    .btn-run span {
+        display: none;
+    }
+
+    /* Description panel */
+    .desc-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .desc-title-row {
+        gap: 8px;
+    }
+
+    .desc-header h2 {
+        font-size: 15px;
+    }
+
+    .desc-badges {
+        gap: 6px;
+    }
+
+    .desc-body {
+        font-size: 13px;
+    }
+
+    .example-chip {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    /* Console compact */
+    .console-container {
+        height: 150px;
+        min-height: 100px;
+    }
+
+    .test-results-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .test-line {
+        padding: 5px 8px;
+        gap: 6px;
+    }
+
+    .test-line .detail {
+        font-size: 11px;
+    }
+
+    .test-line .icon {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+
+    /* Lang toggle */
+    .lang-toggle {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
+/* ===== Extra small screens ===== */
+@media (max-width: 480px) {
+    .topbar {
+        height: 44px;
+        padding: 0 8px;
+    }
+
+    .categories-bar {
+        height: 44px;
+        padding: 0 8px;
+    }
+
+    .category-tab {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .category-tab .cat-name {
+        font-size: 11px;
+    }
+
+    .category-tab .cat-emoji {
+        font-size: 14px;
+    }
+
+    .app-layout {
+        height: calc(100vh - 88px);
+    }
+
+    .sidebar-toggle {
+        top: 52px;
+        left: 4px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .description-panel {
+        padding: 10px 12px;
+        max-height: 140px;
+    }
+
+    .desc-header h2 {
+        font-size: 14px;
+    }
+
+    .console-container {
+        height: 120px;
+        min-height: 80px;
+    }
+
+    .back-link {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .lang-toggle {
+        display: none;
+    }
 }
 
 /* ===== XP Animation ===== */

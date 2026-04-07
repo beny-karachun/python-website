@@ -28,6 +28,7 @@
         <div class="shape shape-3"></div>
     </div>
 
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
@@ -56,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="active">ראשי</a></li>
                 <li><a href="#homework">שיעורי בית</a></li>
                 <li><a href="#exercises">תרגולים</a></li>
@@ -66,6 +67,9 @@
                 <li><a href="exercises.html" target="_blank">CodingBat <i class="fa-solid fa-up-right-from-square"
                             style="font-size:0.7em"></i></a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="תפריט">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <div class="semester-selector">
                 <select id="semester-select" aria-label="בחר סמסטר">
                     <option value="winter">סמסטר חורף</option>
@@ -225,6 +229,39 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        (function() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            if (!toggle || !navLinks) return;
+
+            function openMenu() {
+                navLinks.classList.add('mobile-open');
+                overlay.classList.add('active');
+                toggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            }
+            function closeMenu() {
+                navLinks.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+                toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+
+            toggle.addEventListener('click', function() {
+                if (navLinks.classList.contains('mobile-open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            overlay.addEventListener('click', closeMenu);
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        })();
+    </script>
 </body>
 
 </html>

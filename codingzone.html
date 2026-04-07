@@ -26,6 +26,7 @@
         <div class="shape shape-3"></div>
     </div>
 
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
@@ -54,9 +55,12 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">חזרה לראשי</a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="תפריט">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -105,6 +109,38 @@
 
             document.querySelectorAll('.fade-in, .fade-in-up').forEach(el => observer.observe(el));
         });
+
+        // Mobile menu toggle
+        (function() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            if (!toggle || !navLinks) return;
+
+            function openMenu() {
+                navLinks.classList.add('mobile-open');
+                overlay.classList.add('active');
+                toggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            }
+            function closeMenu() {
+                navLinks.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+                toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+
+            toggle.addEventListener('click', function() {
+                if (navLinks.classList.contains('mobile-open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            overlay.addEventListener('click', closeMenu);
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        })();
     </script>
 </body>
 
